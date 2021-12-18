@@ -23,7 +23,8 @@ const Movie = ({ movie }) => {
             width='sm'
             min-height='xl'
             overflow='hidden'
-            boxShadow='dark-lg'>
+            boxShadow='dark-lg'
+            mx='0 !important'>
             <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
                 objectFit='fill'

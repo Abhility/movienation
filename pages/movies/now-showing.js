@@ -9,7 +9,7 @@ const NowShowingMovies = ({ movies }) => {
         <VStack my={10} gap={5}>
             <WelcomeLoader />
             <MovieList movies={movies} />
-            <Pagination noOfPages={10} />
+            <Pagination noOfPages={5} />
         </VStack>
     );
 };

@@ -6,10 +6,10 @@ import { VStack } from "@chakra-ui/react";
 const HomePage = ({ movies }) => {
 
   return (
-    <VStack my={10} gap={5}>
+    <VStack my={10} mx={3} gap={5}>
       <WelcomeLoader />
       <MovieList movies={movies} />
-      <Pagination noOfPages={10} />
+      <Pagination noOfPages={5} />
     </VStack>
   );
 

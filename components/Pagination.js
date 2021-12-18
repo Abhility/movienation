@@ -1,7 +1,9 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { Button, HStack, IconButton, Tooltip } from '@chakra-ui/react';
+import { ArrowLeftIcon, ArrowRightIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { Button, HStack, IconButton, Tooltip, useMediaQuery } from '@chakra-ui/react';
 
 const Pagination = ({ noOfPages, currentPage }) => {
+
+    const [isLargerThan525] = useMediaQuery('(min-width : 525px)');
 
     return (
         <HStack
@@ -9,23 +11,27 @@ const Pagination = ({ noOfPages, currentPage }) => {
             mx={8}
             gap='2rem'
             flexWrap='wrap'
-            >
+        >
             <Tooltip label='Previous Page' hasArrow placement='bottom'>
-                <IconButton
+                <Button
                     aria-label='Prev Page'
-                    size='lg'
-                    icon={<ChevronLeftIcon />} />
+                    size={isLargerThan525 ? 'lg' : 'sm'}
+                    leftIcon={<ArrowLeftIcon />}>
+                    {!isLargerThan525 && 'Prev'}
+                </Button>
             </Tooltip>
             {
-                Array(noOfPages)
+                isLargerThan525 && Array(noOfPages)
                     .fill(0)
-                    .map((_, i) => <Button key={i}>{i}</Button>)
+                    .map((_, i) => <Button key={i}>{i+1}</Button>)
             }
             <Tooltip label='Next Page' hasArrow placement='bottom'>
-                <IconButton
+                <Button
                     aria-label='Next Page'
-                    size='lg'
-                    icon={<ChevronRightIcon />} />
+                    size={isLargerThan525 ? 'lg' : 'sm'}
+                    rightIcon={<ArrowRightIcon />} >
+                    {!isLargerThan525 && 'Next'}
+                </Button>
             </Tooltip>
         </HStack>
     );
