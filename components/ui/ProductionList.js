@@ -8,11 +8,10 @@ const ProductionList = ({ productionData }) => {
                 flexWrap='wrap'
                 alignItems='center'
                 justifyContent='center'
-                width='100%'
-            >
+                maxW='2xl'>
                 <VStack width='100%' align='flex-start'>
                     <Text fontSize='2xl'>Production Houses</Text>
-                    <Divider size='md'/>
+                    <Divider size='md' />
                     <Box display='flex'
                         flexWrap='wrap'
                         width='100%'

@@ -1,17 +1,15 @@
-import { Wrap, WrapItem } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import Movie from "./Movie";
 
 const MovieList = ({ movies }) => {
     return (
-        <Wrap spacing={8} justify='center' overflow={'hidden'}>
-            {
-                movies.map(movie => (
-                    <WrapItem key={movie.id}>
-                        <Movie movie={movie} />
-                    </WrapItem>
-                ))
-            }
-        </Wrap>
+        <HStack
+            gap={16}
+            width='100%'
+            justify='center'
+            flexWrap='wrap'>
+            {movies.map(movie => (<Movie movie={movie} key={movie.id} />))}
+        </HStack>
     )
 }
 

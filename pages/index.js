@@ -1,13 +1,16 @@
 import MovieList from "../components/ui/MoviesList";
 import WelcomeLoader from "../components/loaders/WelcomeLoader";
+import Pagination from "../components/Pagination";
+import { VStack } from "@chakra-ui/react";
 
 const HomePage = ({ movies }) => {
 
   return (
-    <>
+    <VStack my={10} gap={5}>
       <WelcomeLoader />
       <MovieList movies={movies} />
-    </>
+      <Pagination noOfPages={10} />
+    </VStack>
   );
 
 }

@@ -1,7 +1,17 @@
+import { VStack } from "@chakra-ui/react";
+import WelcomeLoader from "../../components/loaders/WelcomeLoader";
+import Pagination from "../../components/Pagination";
 import MovieList from "../../components/ui/MoviesList";
 
 const NowShowingMovies = ({ movies }) => {
-    return <MovieList movies={movies} />;
+
+    return (
+        <VStack my={10} gap={5}>
+            <WelcomeLoader />
+            <MovieList movies={movies} />
+            <Pagination noOfPages={10} />
+        </VStack>
+    );
 };
 
 export const getStaticProps = async () => {

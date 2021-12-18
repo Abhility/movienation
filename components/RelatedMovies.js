@@ -1,5 +1,6 @@
-import { Divider, Text, VStack } from "@chakra-ui/react";
+import { Divider, Text, Tooltip, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import MovieSkeleton from "./loaders/skeletons/MovieSkeleton";
 import MoviesList from './ui/MoviesList';
 const RelatedMovies = ({ movieId }) => {
     const [relatedMovies, setRelatedMovies] = useState([]);
@@ -18,11 +19,12 @@ const RelatedMovies = ({ movieId }) => {
     }, [movieId]);
 
     return (
-        !loading &&
-        <VStack gap='1rem' width='100%'>
-            <Text fontSize='4xl'>Related Movies</Text>
+        <VStack gap='1rem' width='100%' mx={5} mb={5}>
+            <Tooltip label='This is based on the genre of the movies' hasArrow placement='right'>
+                <Text fontSize='4xl'>Related Movies</Text>
+            </Tooltip>
             <Divider />
-            <MoviesList movies={relatedMovies} />
+            {loading ? <MovieSkeleton count={3} /> : <MoviesList movies={relatedMovies} />}
         </VStack>
     );
 }

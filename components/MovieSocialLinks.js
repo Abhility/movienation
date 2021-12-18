@@ -49,9 +49,9 @@ const MovieSocialLinks = ({ movieId }) => {
 
     };
 
-    const renderSocialLinks = () => (
+    const SocialLinksContainer = () => (
         socialLinks ?
-            <HStack gap={3}>
+            <HStack gap={3} flexWrap="wrap" mx='0 !important'>
                 {
                     socialLinks.map(socialLink => {
                         const { icon, link } = getDataForSocialLink(socialLink);
@@ -69,7 +69,7 @@ const MovieSocialLinks = ({ movieId }) => {
     );
 
     return (
-        loading ? <Circle count={4} /> : renderSocialLinks()
+        loading ? <Circle count={4} /> : <SocialLinksContainer/>
     );
 }
 

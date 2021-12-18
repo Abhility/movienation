@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     Button, Popover, PopoverContent, PopoverBody,
     PopoverTrigger, PopoverArrow, PopoverCloseButton, PopoverHeader, HStack,
@@ -10,13 +10,14 @@ import { ExternalLinkIcon, ViewIcon } from "@chakra-ui/icons";
 const WatchOption = ({ movieId }) => {
     const [watchOptions, setWatchOptions] = useState(null);
     const [loading, setLoading] = useState(true);
+    const country = useRef(null);
 
     const fetchWatchOptions = async () => {
         const location = await userLocation();
-        const country = location.country || 'IN';
         const response = await fetch(`http://localhost:5000/movie-info/movie/${movieId}/watch`);
         const data = await response.json();
-        const watchOptions = data[country];
+        const watchOptions = data[location.countryCode];
+        country.current = location.country;
         setWatchOptions(watchOptions);
         setLoading(false);
     };
@@ -29,7 +30,7 @@ const WatchOption = ({ movieId }) => {
     const streamingOptions = watchOptions?.flatrate;
     const buyOptions = watchOptions?.buy;
 
-    const renderOptions = (options, header) => (
+    const Options = ({ options, header }) => (
         <VStack gap={2}>
             <Text>{header}</Text>
             <HStack flexWrap='wrap' gap={4} justifyContent='center'>
@@ -50,7 +51,7 @@ const WatchOption = ({ movieId }) => {
     );
 
 
-    const renderWatchOptions = () => {
+    const WatchOptionContainer = () => {
         return (
             watchOptions ?
                 <Popover>
@@ -68,7 +69,7 @@ const WatchOption = ({ movieId }) => {
                         <PopoverArrow />
                         <PopoverCloseButton />
                         <PopoverHeader>
-                            <Text>Available Options</Text>
+                            <Text>Available Options for {country.current}</Text>
                         </PopoverHeader>
                         <PopoverBody>
                             <VStack gap={3}>
@@ -78,9 +79,9 @@ const WatchOption = ({ movieId }) => {
                                         <TagRightIcon as={ExternalLinkIcon} />
                                     </Tag>
                                 </Link>
-                                {streamingOptions && renderOptions(streamingOptions, 'Streaming On')}
-                                {rentOptions && renderOptions(rentOptions, 'Rent On')}
-                                {buyOptions && renderOptions(buyOptions, 'Buy On')}
+                                {streamingOptions && <Options options={streamingOptions} header={'Streaming On'} />}
+                                {rentOptions && <Options options={rentOptions} header={'Rent On'} />}
+                                {buyOptions && <Options options={buyOptions} header={'Buy On'} />}
                             </VStack>
                         </PopoverBody>
                         <PopoverFooter>
@@ -98,10 +99,10 @@ const WatchOption = ({ movieId }) => {
                 </Popover> :
                 null
         );
-    }
+    };
 
     return (
-        loading ? <Skeleton width='80px' height='25px' /> : renderWatchOptions()
+        loading ? <Skeleton width='80px' height='25px' /> : <WatchOptionContainer />
     );
 };
 

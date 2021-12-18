@@ -62,13 +62,18 @@ a {
 }
 
 /* To explicitly control height of the poster carousel */
+
+.backdrop-carousel-image{
+  object-fit: fill !important;
+}
+
 .carousel-root {
   height: 100% !important;
 }
 .carousel-slider {
   height: 100% !important;
 }
-.poster-carousel-image{
+.poster-carousel-image {
   height: 32rem !important;
   object-fit: fill !important;
 }

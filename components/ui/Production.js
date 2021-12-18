@@ -7,7 +7,7 @@ const Production = ({ production }) => {
             borderRadius='full'
             gap={2}>
             <Avatar
-                src={`https://image.tmdb.org/t/p/w300${production.logo_path}`}
+                src={production.logo_path && `https://image.tmdb.org/t/p/w300${production.logo_path}`}
                 size='sm'
                 className='production-avatar'
                 ml={-3}
