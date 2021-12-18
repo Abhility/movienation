@@ -3,7 +3,7 @@ import { MdOutlineOndemandVideo } from 'react-icons/md'
 import {
     Image, Box, Text, VStack, Divider,
     Tag, Button, HStack, Link as ExternalLink,
-    Tooltip, TagLabel, TagLeftIcon
+    Tooltip, TagLabel, TagLeftIcon, useMediaQuery
 } from "@chakra-ui/react";
 import Link from "next/link";
 import CastList from "../../../components/CastList";
@@ -23,6 +23,8 @@ const MovieDetailsPage = ({ movie }) => {
     const { movieId } = router.query;
     const [images, setImages] = useState([]);
     const [showSliders, setShowSliders] = useState(false);
+    const [isLargerThan1150] = useMediaQuery('(min-width: 1150px)');
+    const [isLargerThan1265] = useMediaQuery('(min-width: 1265px)');
 
     useEffect(() => {
         (async () => {
@@ -85,13 +87,26 @@ const MovieDetailsPage = ({ movie }) => {
 
     const MovieOverview = () => {
         return (
-            <VStack align='flex-start' flexWrap="wrap" maxW='2xl'>
+            <VStack align={isLargerThan1265 ? 'flex-start' : 'center'} flexWrap="wrap" maxW='2xl'>
                 <Text fontSize='2xl'>Overview</Text>
                 <Divider />
                 <Text>{movie.overview}</Text>
             </VStack>
         );
     };
+
+    const carouselRenderItem = (item, otherProps) => (
+        <Image
+            src={`https://image.tmdb.org/t/p/original${item.props.image.file_path}`}
+            alt={item.props.image.file_path}
+            objectFit='fill'
+            className="backdrop-carousel-image"
+            fallbackSrc="../image-not-found.jpg"
+            width='100%'
+            height='100%'
+            objectFit='fill'
+            {...otherProps} />
+    );
 
     const BackdropCarousel = () => {
         return (
@@ -101,33 +116,21 @@ const MovieDetailsPage = ({ movie }) => {
                 width='100%'
                 height='40rem'
                 overflow='hidden'>
-                {!showSliders ?
+                {showSliders ?
+                    <ImagesCarousel
+                        images={images.backdrops}
+                        renderItem={carouselRenderItem}
+                        infiniteLoop={true}
+                        stopOnHover={false}
+                        autoPlay={true}
+                        showThumbs={false}
+                    /> :
                     <Image src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                         alt={movie.title}
                         fallbackSrc="../image-not-found.jpg"
                         width='100%'
                         height='100%'
                         objectFit='fill' />
-                    :
-                    <ImagesCarousel images={images.backdrops} renderItem={
-                        (item, otherProps) =>
-                            <Image
-                                src={`https://image.tmdb.org/t/p/original${item.props.image.file_path}`}
-                                alt={item.props.image.file_path}
-                                objectFit='fill'
-                                className="backdrop-carousel-image"
-                                fallbackSrc="../image-not-found.jpg"
-                                width='100%'
-                                height='100%'
-                                objectFit='fill'
-                                {...otherProps}
-                            />
-                    } infiniteLoop={true}
-                        showIndicators={true}
-                        stopOnHover={false}
-                        autoPlay={true}
-                        showThumbs={false}
-                    />
                 }
             </Box>
         );
@@ -143,22 +146,10 @@ const MovieDetailsPage = ({ movie }) => {
                 boxShadow='dark-lg'
                 borderRadius='lg'
                 overflow='hidden'>
-                {!showSliders ?
-                    <Image src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-                        alt={movie.title}
-                        width='100%'
-                        height='100%'
-                        objectFit='fill'
-                    /> :
-                    <ImagesCarousel images={images.posters} className="poster-carousel" renderItem={
-                        (item, otherProps) =>
-                            <Image src={`https://image.tmdb.org/t/p/w300${item.props.image.file_path}`}
-                                alt={item.props.image.file_path}
-                                objectFit='fill'
-                                className="poster-carousel-image"
-                                borderRadius='lg'
-                                {...otherProps}
-                            />} showIndicators={false}
+                {showSliders ?
+                    <ImagesCarousel images={images.posters} className="poster-carousel"
+                        renderItem={carouselRenderItem}
+                        showIndicators={false}
                         infiniteLoop={true}
                         autoPlay={true}
                         interval={1500}
@@ -166,6 +157,12 @@ const MovieDetailsPage = ({ movie }) => {
                         showArrows={false}
                         dynamicHeight={true}
                         showThumbs={false}
+                    /> :
+                    <Image src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                        alt={movie.title}
+                        width='100%'
+                        height='100%'
+                        objectFit='fill'
                     />
                 }
             </Box>
@@ -174,10 +171,10 @@ const MovieDetailsPage = ({ movie }) => {
 
     return (
         <Box display='flex' alignItems='center' justifyContent='center' gap={4} flexWrap='wrap'>
-            <BackdropCarousel />
+            {isLargerThan1150 && <BackdropCarousel />}
             <Box display='flex' flexWrap='wrap' width='100%' p={5} gap='2rem' alignItems='center' justifyContent='space-evenly'>
                 <PosterCarousel />
-                <VStack align='flex-start' spacing='1.5rem' flexWrap="wrap">
+                <VStack align={isLargerThan1265 ? 'flex-start' : 'center'} spacing='1.5rem' flexWrap="wrap">
                     <Text fontSize='4xl'>{movie.title}</Text>
                     <HStack gap={3} flexWrap="wrap">
                         <MovieReleaseDate />
@@ -189,7 +186,7 @@ const MovieDetailsPage = ({ movie }) => {
                     </HStack>
                     <Genres genreList={movie.genres.map(genre => genre.id)} size='lg' />
                     <MovieOverview />
-                    <Production productionData={movie.production_companies} />
+                    <Production isLargerThan1265={isLargerThan1265} productionData={movie.production_companies} />
                     <HStack gap='2rem' flexWrap="wrap" justifyContent='flex-start' alignItems='center'>
                         <WatchListButton movieId={movie.id} />
                         <HomePageButton />
