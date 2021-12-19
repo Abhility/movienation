@@ -6,6 +6,7 @@ import {
 } from '@chakra-ui/react';
 import { userLocation } from "../helpers/common";
 import { ExternalLinkIcon, ViewIcon } from "@chakra-ui/icons";
+import { imageUrls } from "../constants/global";
 
 const WatchOption = ({ movieId }) => {
     const [watchOptions, setWatchOptions] = useState(null);
@@ -40,7 +41,7 @@ const WatchOption = ({ movieId }) => {
                             <Avatar
                                 size='sm'
                                 name={option.provider_name}
-                                src={`https://image.tmdb.org/t/p/w500${option.logo_path}`}
+                                src={`${imageUrls.TMDB.small}${option.logo_path}`}
                             />
                         </Tooltip>
                     ))

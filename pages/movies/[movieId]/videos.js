@@ -26,7 +26,7 @@ const MovieVideosPage = () => {
     }, [movieId]);
 
     return (
-        <VStack width='xl'
+        <VStack
             width='100%'
             align='center'
             mx='auto'
@@ -34,7 +34,7 @@ const MovieVideosPage = () => {
             mt='1rem'
             mb='1rem'>
             <Text fontSize='3xl'>Videos</Text>
-            <Link href={`/movies/${movieId}`}>
+            <Link href={`/movies/${movieId}`} passHref>
                 <Button leftIcon={<ArrowLeftIcon />} variant='outline' colorScheme='blue'>Go Back</Button>
             </Link>
             {loading ? <VideoSkeleton count={3} /> :

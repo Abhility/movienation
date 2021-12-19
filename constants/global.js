@@ -19,3 +19,15 @@ export const genres = [
     { id: 10752, name: 'War' },
     { id: 37, name: 'Western' },
 ];
+
+export const imageUrls = {
+    TMDB: {
+        small: 'https://image.tmdb.org/t/p/w300',
+        medium: 'https://image.tmdb.org/t/p/w500',
+        full: 'https://image.tmdb.org/t/p/original'
+    },
+    STOCK: {
+        cast : '../../cast-not-found.jpg',
+        backdrop: ''
+    }
+}

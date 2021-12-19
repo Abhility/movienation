@@ -17,6 +17,7 @@ import WatchListButton from "../../../components/WatchListButton";
 import { useEffect, useState } from "react";
 import ImagesCarousel from "../../../components/carousel/ImagesCarousel";
 import { useRouter } from "next/router";
+import { imageUrls } from "../../../constants/global";
 
 const MovieDetailsPage = ({ movie }) => {
     const router = useRouter();
@@ -60,7 +61,7 @@ const MovieDetailsPage = ({ movie }) => {
 
     const VideosButton = () => {
         return (
-            <Link href={`/movies/${movie.id}/videos`}>
+            <Link href={`/movies/${movie.id}/videos`} passHref>
                 <Button
                     leftIcon={<MdOutlineOndemandVideo />}
                     rightIcon={<ArrowRightIcon />}
@@ -96,17 +97,15 @@ const MovieDetailsPage = ({ movie }) => {
     };
 
     const carouselRenderItem = (isFullSize, item, otherProps) => {
-        const imageBaseUrl = isFullSize ? 'https://image.tmdb.org/t/p/original' : 'https://image.tmdb.org/t/p/w500'
+        const imageBaseUrl = isFullSize ? imageUrls.TMDB.full : imageUrls.TMDB.medium;
         return (
             <Image
                 src={`${imageBaseUrl}${item.props.image.file_path}`}
                 alt={item.props.image.file_path}
                 objectFit='fill'
                 className="backdrop-carousel-image"
-                fallbackSrc="../image-not-found.jpg"
-                width='100%'
+                fallbackSrc={imageUrls.STOCK.backdrop}
                 height='100%'
-                objectFit='fill'
                 {...otherProps} />
         );
     };
@@ -128,9 +127,9 @@ const MovieDetailsPage = ({ movie }) => {
                         autoPlay={true}
                         showThumbs={false}
                     /> :
-                    <Image src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                    <Image src={`${imageUrls.TMDB.full}${movie.backdrop_path}`}
                         alt={movie.title}
-                        fallbackSrc="../image-not-found.jpg"
+                        fallbackSrc={imageUrls.STOCK.backdrop}
                         width='100%'
                         height='100%'
                         objectFit='fill' />
@@ -161,7 +160,7 @@ const MovieDetailsPage = ({ movie }) => {
                         dynamicHeight={true}
                         showThumbs={false}
                     /> :
-                    <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    <Image src={`${imageUrls.TMDB.medium}${movie.poster_path}`}
                         alt={movie.title}
                         width='100%'
                         height='100%'

@@ -5,11 +5,12 @@ import Genres from './Genres';
 import Rating from './Rating';
 import Link from 'next/link';
 import WatchListButton from '../WatchListButton';
+import { imageUrls } from '../../constants/global';
 const Movie = ({ movie }) => {
 
     const MoreDetailsButton = () => {
         return (
-            <Link href={`/movies/${movie.id}`}>
+            <Link href={`/movies/${movie.id}`} passHref>
                 <Button leftIcon={<BiDetail />} rightIcon={<ArrowRightIcon />} colorScheme='blue' variant='outline'>
                     More Details
                 </Button>
@@ -25,7 +26,7 @@ const Movie = ({ movie }) => {
             overflow='hidden'
             boxShadow='dark-lg'
             mx='0 !important'>
-            <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            <Image src={`${imageUrls.TMDB.medium}${movie.poster_path}`}
                 alt={movie.title}
                 objectFit='fill'
                 width='100%'
