@@ -189,7 +189,7 @@ const MovieDetailsPage = ({ movie }) => {
                     </HStack>
                     <Genres genreList={movie.genres.map(genre => genre.id)} size='lg' />
                     <MovieOverview />
-                    <Production isLargerThan1265={isLargerThan1265} productionData={movie.production_companies} />
+                    <Production isLargerThan1150={isLargerThan1150} productionData={movie.production_companies} />
                     <HStack gap='2rem' flexWrap="wrap" justifyContent='flex-start' alignItems='center'>
                         <WatchListButton movieId={movie.id} />
                         <HomePageButton />

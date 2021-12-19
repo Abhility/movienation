@@ -9,14 +9,15 @@ const NowShowingMovies = ({ movies }) => {
         <VStack my={10} gap={5}>
             <WelcomeLoader />
             <MovieList movies={movies} />
-            <Pagination noOfPages={5} />
+            {/* <Pagination noOfPages={5} /> */}
         </VStack>
     );
 };
 
 export const getStaticProps = async () => {
     const response = await fetch('http://localhost:5000/movie-info/getmovies/now_playing');
-    const data = await response.json();
+    let data = await response.json();
+    data = data.results;
     return {
         props: {
             movies: data

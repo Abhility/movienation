@@ -8,7 +8,8 @@ const RelatedMovies = ({ movieId }) => {
 
     const fetchRelatedMovies = async () => {
         const response = await fetch(`http://localhost:5000/movie-info/movie/${movieId}/related`);
-        const data = await response.json();
+        let data = await response.json();
+        data = data.results;
         const randomIndex = Math.round(Math.random() * (data.length));
         setRelatedMovies(data && data.slice(randomIndex, randomIndex + 3));
         setLoading(false);
