@@ -24,7 +24,7 @@ const RelatedMovies = ({ movieId }) => {
                 <Text fontSize='4xl'>Related Movies</Text>
             </Tooltip>
             <Divider />
-            {loading ? <MovieSkeleton count={3} /> : <MoviesList movies={relatedMovies} />}
+            {<MoviesList movies={relatedMovies} loading={loading} count={3} />}
         </VStack>
     );
 }

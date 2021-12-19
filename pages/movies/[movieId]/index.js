@@ -95,18 +95,21 @@ const MovieDetailsPage = ({ movie }) => {
         );
     };
 
-    const carouselRenderItem = (item, otherProps) => (
-        <Image
-            src={`https://image.tmdb.org/t/p/original${item.props.image.file_path}`}
-            alt={item.props.image.file_path}
-            objectFit='fill'
-            className="backdrop-carousel-image"
-            fallbackSrc="../image-not-found.jpg"
-            width='100%'
-            height='100%'
-            objectFit='fill'
-            {...otherProps} />
-    );
+    const carouselRenderItem = (isFullSize, item, otherProps) => {
+        const imageBaseUrl = isFullSize ? 'https://image.tmdb.org/t/p/original' : 'https://image.tmdb.org/t/p/w500'
+        return (
+            <Image
+                src={`${imageBaseUrl}${item.props.image.file_path}`}
+                alt={item.props.image.file_path}
+                objectFit='fill'
+                className="backdrop-carousel-image"
+                fallbackSrc="../image-not-found.jpg"
+                width='100%'
+                height='100%'
+                objectFit='fill'
+                {...otherProps} />
+        );
+    };
 
     const BackdropCarousel = () => {
         return (
@@ -119,7 +122,7 @@ const MovieDetailsPage = ({ movie }) => {
                 {showSliders ?
                     <ImagesCarousel
                         images={images.backdrops}
-                        renderItem={carouselRenderItem}
+                        renderItem={carouselRenderItem.bind(null, true)}
                         infiniteLoop={true}
                         stopOnHover={false}
                         autoPlay={true}
@@ -148,7 +151,7 @@ const MovieDetailsPage = ({ movie }) => {
                 overflow='hidden'>
                 {showSliders ?
                     <ImagesCarousel images={images.posters} className="poster-carousel"
-                        renderItem={carouselRenderItem}
+                        renderItem={carouselRenderItem.bind(null, false)}
                         showIndicators={false}
                         infiniteLoop={true}
                         autoPlay={true}
@@ -158,7 +161,7 @@ const MovieDetailsPage = ({ movie }) => {
                         dynamicHeight={true}
                         showThumbs={false}
                     /> :
-                    <Image src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                    <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                         alt={movie.title}
                         width='100%'
                         height='100%'
