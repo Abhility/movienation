@@ -2,28 +2,15 @@ import { ArrowLeftIcon } from "@chakra-ui/icons";
 import { Button, Text, VStack } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import VideoSkeleton from "../../../components/loaders/skeletons/VideoSkeleton";
 import YoutubeVideo from "../../../components/ui/YoutubeVideo";
+import useHttp from "../../../hooks/useHttp";
 
 const MovieVideosPage = () => {
     const router = useRouter();
     const { movieId } = router.query;
-    const [videos, setVideos] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    const fetchMovieVideos = async () => {
-        if (router.isReady) {
-            const response = await fetch(`http://localhost:5000/movie-info/getmovie/${movieId}/videos`);
-            let data = await response.json();
-            setLoading(false);
-            setVideos(data.results);
-        }
-    };
-
-    useEffect(() => {
-        fetchMovieVideos();
-    }, [movieId]);
+    const {data,loading, hasError } = useHttp(`http://localhost:5000/movie-info/getmovie/${movieId}/videos`);
+    const videos = data?.results;
 
     return (
         <VStack

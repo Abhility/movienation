@@ -18,22 +18,16 @@ import { useEffect, useState } from "react";
 import ImagesCarousel from "../../../components/carousel/ImagesCarousel";
 import { useRouter } from "next/router";
 import { imageUrls } from "../../../constants/global";
+import useHttp from "../../../hooks/useHttp";
 
 const MovieDetailsPage = ({ movie }) => {
     const router = useRouter();
     const { movieId } = router.query;
-    const [images, setImages] = useState([]);
+    const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/getmovie/${movieId}/images`);
+    const images = data;
     const [showSliders, setShowSliders] = useState(false);
     const [isLargerThan1150] = useMediaQuery('(min-width: 1150px)');
     const [isLargerThan1265] = useMediaQuery('(min-width: 1265px)');
-
-    useEffect(() => {
-        (async () => {
-            const response = await fetch(`http://localhost:5000/movie-info/getmovie/${movieId}/images`);
-            const data = await response.json();
-            setImages(data);
-        })();
-    }, [movieId]);
 
     useEffect(() => {
         let sliderTimer = setTimeout(() => setShowSliders(true), 3000);
@@ -120,7 +114,7 @@ const MovieDetailsPage = ({ movie }) => {
                 overflow='hidden'>
                 {showSliders ?
                     <ImagesCarousel
-                        images={images.backdrops}
+                        images={images?.backdrops}
                         renderItem={carouselRenderItem.bind(null, true)}
                         infiniteLoop={true}
                         stopOnHover={false}
@@ -149,7 +143,7 @@ const MovieDetailsPage = ({ movie }) => {
                 borderRadius='lg'
                 overflow='hidden'>
                 {showSliders ?
-                    <ImagesCarousel images={images.posters} className="poster-carousel"
+                    <ImagesCarousel images={images?.posters} className="poster-carousel"
                         renderItem={carouselRenderItem.bind(null, false)}
                         showIndicators={false}
                         infiniteLoop={true}

@@ -1,25 +1,14 @@
-import { HStack, Link, Text, Tooltip } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { HStack, Link, Tooltip } from "@chakra-ui/react";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaFacebook, FaTwitter, FaImdb } from "react-icons/fa";
 import { SocialLinks } from "../helpers/common";
+import useHttp from "../hooks/useHttp";
 import Circle from "./loaders/skeletons/Circle";
 
 
 const MovieSocialLinks = ({ movieId }) => {
-    const [socialLinks, setSocialLinks] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    const fetchSocialLinks = async () => {
-        const response = await fetch(`http://localhost:5000/movie-info/movie/${movieId}/socialLinks`);
-        const data = await response.json();
-        setSocialLinks(data);
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        fetchSocialLinks();
-    }, [movieId]);
+    const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/movie/${movieId}/socialLinks`);
+    const socialLinks = data;
 
     const getDataForSocialLink = (socialLink) => {
         const { name, linkId } = socialLink;
@@ -69,7 +58,7 @@ const MovieSocialLinks = ({ movieId }) => {
     );
 
     return (
-        loading ? <Circle count={4} /> : <SocialLinksContainer/>
+        loading ? <Circle count={4} /> : <SocialLinksContainer />
     );
 }
 

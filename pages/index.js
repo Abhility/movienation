@@ -2,32 +2,14 @@ import MovieList from "../components/ui/MoviesList";
 import WelcomeLoader from "../components/loaders/WelcomeLoader";
 import Pagination from "../components/Pagination";
 import { VStack } from "@chakra-ui/react";
-import { useEffect, useState, useRef } from "react";
+import useHttp from "../hooks/useHttp";
+import { useState } from "react";
 
 const HomePage = ({ movieData }) => {
   const { results: preLoadedMovies, total_pages: totalPages } = movieData;
-  const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [movies, setMovies] = useState(preLoadedMovies);
-  const isMounted = useRef(false);
-
-
-  const fetchMoviesFromPage = async () => {
-    const response = await fetch(`http://localhost:5000/movie-info/trending?page=${currentPage}`);
-    const data = await response.json();
-    setMovies(data.results);
-    setCurrentPage(data.page);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    if (isMounted.current) {
-      setLoading(true);
-      fetchMoviesFromPage();
-    } else {
-      isMounted.current = true;
-    }
-  }, [currentPage]);
+  const [currentPage , setCurrentPage] = useState(1);
+  const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/trending?page=${currentPage}`);
+  const movies = data ? data.results : preLoadedMovies;
 
   const nextPageClick = () => {
     window.scrollTo({

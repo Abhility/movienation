@@ -1,23 +1,12 @@
 import { Divider, Text, Tooltip, VStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import MovieSkeleton from "./loaders/skeletons/MovieSkeleton";
+import useHttp from "../hooks/useHttp";
 import MoviesList from './ui/MoviesList';
+
 const RelatedMovies = ({ movieId }) => {
-    const [relatedMovies, setRelatedMovies] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    const fetchRelatedMovies = async () => {
-        const response = await fetch(`http://localhost:5000/movie-info/movie/${movieId}/related`);
-        let data = await response.json();
-        data = data.results;
-        const randomIndex = Math.round(Math.random() * (data.length));
-        setRelatedMovies(data && data.slice(randomIndex, randomIndex + 3));
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        fetchRelatedMovies();
-    }, [movieId]);
+    const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/movie/${movieId}/related`);
+    let relatedMovies = data?.results;
+    const randomIndex = Math.round(Math.random() * (relatedMovies?.length));
+    relatedMovies = relatedMovies?.slice(randomIndex, randomIndex + 3);
 
     return (
         <VStack gap='1rem' width='100%' mx={5} mb={5}>

@@ -1,31 +1,15 @@
-import { useEffect, useRef, useState } from "react";
 import {
     Button, Popover, PopoverContent, PopoverBody,
     PopoverTrigger, PopoverArrow, PopoverCloseButton, PopoverHeader, HStack,
     Text, VStack, Avatar, Divider, Tooltip, Tag, Link, TagLabel, TagRightIcon, PopoverFooter, Skeleton
 } from '@chakra-ui/react';
-import { userLocation } from "../helpers/common";
 import { ExternalLinkIcon, ViewIcon } from "@chakra-ui/icons";
 import { imageUrls } from "../constants/global";
+import useHttp from "../hooks/useHttp";
 
 const WatchOption = ({ movieId }) => {
-    const [watchOptions, setWatchOptions] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const country = useRef(null);
-
-    const fetchWatchOptions = async () => {
-        const location = await userLocation();
-        const response = await fetch(`http://localhost:5000/movie-info/movie/${movieId}/watch`);
-        const data = await response.json();
-        const watchOptions = data[location.countryCode];
-        country.current = location.country;
-        setWatchOptions(watchOptions);
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        fetchWatchOptions();
-    }, [movieId]);
+    const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/movie/${movieId}/watch`);
+    let watchOptions = data?.IN;
 
     const rentOptions = watchOptions?.rent;
     const streamingOptions = watchOptions?.flatrate;
@@ -70,7 +54,7 @@ const WatchOption = ({ movieId }) => {
                         <PopoverArrow />
                         <PopoverCloseButton />
                         <PopoverHeader>
-                            <Text>Available Options for {country.current}</Text>
+                            <Text>Available Options</Text>
                         </PopoverHeader>
                         <PopoverBody>
                             <VStack gap={3}>

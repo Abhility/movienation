@@ -28,6 +28,6 @@ export const imageUrls = {
     },
     STOCK: {
         cast : '../../cast-not-found.jpg',
-        backdrop: ''
+        backdrop: '../../image-not-found.jpg'
     }
 }
