@@ -16,12 +16,12 @@ const Pagination = (props) => {
             <Tooltip label='Previous Page' hasArrow placement='bottom'>
                 <Button
                     aria-label='Prev Page'
-                    size={isLargerThan525 ? 'lg' : 'sm'}
+                    size={isLargerThan525 ? 'md' : 'sm'}
                     leftIcon={<ArrowLeftIcon />}
                     variant='outline'
                     isDisabled={props.currentPage <= 10}
                     onClick={props.prevPageClick}>
-                    {!isLargerThan525 && 'Prev'}
+                    {'Prev'}
                 </Button>
             </Tooltip>
             {
@@ -35,12 +35,12 @@ const Pagination = (props) => {
             <Tooltip label='Next Page' hasArrow placement='bottom'>
                 <Button
                     aria-label='Next Page'
-                    size={isLargerThan525 ? 'lg' : 'sm'}
+                    size={isLargerThan525 ? 'md' : 'sm'}
                     rightIcon={<ArrowRightIcon />}
                     variant='outline'
                     isDisabled={props.currentPage >= props.totalPages}
                     onClick={props.nextPageClick}>
-                    {!isLargerThan525 && 'Next'}
+                    {'Next'}
                 </Button>
             </Tooltip>
         </HStack>
