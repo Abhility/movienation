@@ -1,4 +1,5 @@
 import { Divider, Text, Tooltip, VStack } from "@chakra-ui/react";
+import React from "react";
 import useHttp from "../hooks/useHttp";
 import MoviesList from './ui/MoviesList';
 
@@ -19,4 +20,4 @@ const RelatedMovies = ({ movieId }) => {
     );
 }
 
-export default RelatedMovies;
+export default React.memo(RelatedMovies);

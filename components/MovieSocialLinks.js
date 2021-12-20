@@ -1,4 +1,5 @@
 import { HStack, Link, Tooltip } from "@chakra-ui/react";
+import React from "react";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaFacebook, FaTwitter, FaImdb } from "react-icons/fa";
 import { SocialLinks } from "../helpers/common";
@@ -62,4 +63,4 @@ const MovieSocialLinks = ({ movieId }) => {
     );
 }
 
-export default MovieSocialLinks;
+export default React.memo(MovieSocialLinks);

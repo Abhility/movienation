@@ -6,6 +6,7 @@ import {
 import { ExternalLinkIcon, ViewIcon } from "@chakra-ui/icons";
 import { imageUrls } from "../constants/global";
 import useHttp from "../hooks/useHttp";
+import React from 'react';
 
 const WatchOption = ({ movieId }) => {
     const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/movie/${movieId}/watch`);
@@ -91,5 +92,4 @@ const WatchOption = ({ movieId }) => {
     );
 };
 
-
-export default WatchOption;
+export default React.memo(WatchOption);

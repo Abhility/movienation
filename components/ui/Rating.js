@@ -1,6 +1,6 @@
 import { VscStarFull, VscStarHalf } from "react-icons/vsc";
 import { Box, HStack, Tag, TagLabel, Tooltip } from "@chakra-ui/react";
-
+import React from "react";
 const Rating = ({ rating }) => {
     const finalRating = Math.floor(rating / 2);
     return (
@@ -25,4 +25,4 @@ const Rating = ({ rating }) => {
     );
 }
 
-export default Rating;
+export default React.memo(Rating);

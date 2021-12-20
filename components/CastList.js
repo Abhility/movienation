@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Divider, Text, VStack } from '@chakra-ui/react';
 import Cast from "./ui/Cast";
 import CastSkeleton from "./loaders/skeletons/CastSkeleton";
@@ -32,4 +33,4 @@ const CastList = ({ movieId }) => {
     );
 };
 
-export default CastList;
+export default React.memo(CastList);
