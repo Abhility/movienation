@@ -26,10 +26,10 @@ const PageNotFound = () => {
     }, []);
 
     return (
-        <VStack>
+        <VStack alignItems='center' mx={5} gap={3}>
             <div ref={notFoundAnimation} />
             <div className="not-found-text-animation" ref={notFoundText} />
-            <Text fontSize='2xl'>We&apos;re sorry, the page you requested is not found. Please go back to homepage</Text>
+            <Text>We&apos;re sorry, the page you requested is not found. Please go back to homepage</Text>
             <Link href='/' passHref><Button>Go Home</Button></Link>
         </VStack>
     )

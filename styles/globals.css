@@ -42,23 +42,17 @@ a {
   z-index: 1000;
 }
 
-.welcome-loader-container .welcome-loader {
-  width: 500px;
-  height: 500px;
-}
-
 .welcome-loader-container h3 {
   width: 200px;
   height: 200px;
-}
+} 
 
 .production-avatar img {
   object-fit: contain;
 }
 
 .not-found-text-animation {
-  height: 150px;
-  width: 150px;
+  width: 20%;
 }
 
 /* To explicitly control height of the poster carousel */
