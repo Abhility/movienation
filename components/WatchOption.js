@@ -59,12 +59,6 @@ const WatchOption = ({ movieId }) => {
                         </PopoverHeader>
                         <PopoverBody>
                             <VStack gap={3}>
-                                <Link href={watchOptions.link} isExternal>
-                                    <Tag colorScheme='blue' color='white'>
-                                        <TagLabel>Watch Here</TagLabel>
-                                        <TagRightIcon as={ExternalLinkIcon} />
-                                    </Tag>
-                                </Link>
                                 {streamingOptions && <Options options={streamingOptions} header={'Streaming On'} />}
                                 {rentOptions && <Options options={rentOptions} header={'Rent On'} />}
                                 {buyOptions && <Options options={buyOptions} header={'Buy On'} />}

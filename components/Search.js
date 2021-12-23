@@ -11,7 +11,7 @@ const Search = () => {
     const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/search/${query}?page=${currentPage}`);
     const searchedMovies = data?.results;
     const totalPages = data?.total_pages;
-    
+
     const onChange = (event) => {
         setQuery(event.target.value);
     }
@@ -24,10 +24,9 @@ const Search = () => {
         <VStack align='center' width='100%'>
             <Text fontSize={'xl'}>Search Here!</Text>
             <InputGroup>
-                <InputLeftElement
-                    pointerEvents='none'
-                    children={<BsSearch />}
-                />
+                <InputLeftElement pointerEvents='none'>
+                    {<BsSearch />}
+                </InputLeftElement>
                 <Input type='text' placeholder='Search movie...' value={query} onChange={onChange} />
             </InputGroup>
             <MovieList movies={searchedMovies} count={12} loading={loading} />
