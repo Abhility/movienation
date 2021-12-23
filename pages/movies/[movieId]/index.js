@@ -142,7 +142,7 @@ const MovieDetailsPage = ({ movie }) => {
                 boxShadow='dark-lg'
                 borderRadius='lg'
                 overflow='hidden'>
-                {showSliders ?
+                {showSliders && images?.posters.length > 0 ?
                     <ImagesCarousel images={images?.posters} className="poster-carousel"
                         renderItem={carouselRenderItem.bind(null, false)}
                         showIndicators={false}
