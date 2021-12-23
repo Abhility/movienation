@@ -22,7 +22,7 @@ const MovieSkeleton = ({ count }) => {
                         alignItems='flex-start'
                         mx='0 !important'>
                         <Skeleton height='15px' width='12%' borderRadius='full' />
-                        <Skeleton height='20px' width='80%' />
+                        <Skeleton height='20px' width='30%' />
                         <Skeleton height='25px' width='50%' />
                         <HStack width='100%' gap={4}>
                             <Skeleton height='32px' width='30%' borderRadius='md' />

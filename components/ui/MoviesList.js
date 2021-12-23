@@ -9,7 +9,7 @@ const MovieList = ({ movies, loading, count }) => {
             width='100%'
             justify='center'
             flexWrap='wrap'>
-            {loading ? <MovieSkeleton count={count} /> : movies.map(movie => (<Movie movie={movie} key={movie.id} />))}
+            {loading ? <MovieSkeleton count={count} /> : movies ? movies.map(movie => (<Movie movie={movie} key={movie.id} />)) : null}
         </HStack>
     )
 }

@@ -112,7 +112,7 @@ const MovieDetailsPage = ({ movie }) => {
                 width='100%'
                 height='40rem'
                 overflow='hidden'>
-                {showSliders ?
+                {showSliders && images?.backdrops.length > 0 ?
                     <ImagesCarousel
                         images={images?.backdrops}
                         renderItem={carouselRenderItem.bind(null, true)}

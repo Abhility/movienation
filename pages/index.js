@@ -11,39 +11,8 @@ const HomePage = ({ movieData }) => {
   const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/trending?page=${currentPage}`);
   const movies = data ? data.results : preLoadedMovies;
 
-  const nextPageClick = () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
-    const isLastPageOfCurrentBlock = currentPage % 10 == 0;
-    const toPage = isLastPageOfCurrentBlock ?
-      currentPage + 1
-      : (Math.floor((currentPage + 10) / 10) * 10) + 1;
-    setCurrentPage(toPage);
-  };
-
-  const prevPageClick = () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
-    const isFirstPageOfCurrentBlock = currentPage % 10 == 1;
-    const toPage = isFirstPageOfCurrentBlock ?
-      currentPage - 1
-      : (Math.floor((currentPage - 10) / 10) * 10);
-    setCurrentPage(toPage);
-  };
-
-  const pageClick = (pageNumber) => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
-    setCurrentPage(pageNumber);
+  const pageChange = (page) =>{
+    setCurrentPage(page);
   }
 
   return (
@@ -53,9 +22,7 @@ const HomePage = ({ movieData }) => {
       <Pagination
         noOfPages={totalPages}
         currentPage={currentPage}
-        nextPageClick={nextPageClick}
-        prevPageClick={prevPageClick}
-        pageClick={pageClick}
+        pageChange={pageChange}
       />
     </VStack>
   );

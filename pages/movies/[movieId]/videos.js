@@ -25,9 +25,9 @@ const MovieVideosPage = () => {
                 <Button leftIcon={<ArrowLeftIcon />} variant='outline' colorScheme='blue'>Go Back</Button>
             </Link>
             {loading ? <VideoSkeleton count={3} /> :
-                videos && videos.map(video => (
+                videos?.length > 0 ? videos.map(video => (
                     <YoutubeVideo key={video.id} videoData={video} />
-                ))
+                )) : <Text fontSize='xl'>No videos found!!</Text>
             }
         </VStack>
     );
