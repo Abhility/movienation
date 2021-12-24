@@ -17,16 +17,51 @@ const WatchListButton = ({ movieId }) => {
             isClosable: true,
         });
     };
+
+    const removeFromWatchList = () => {
+        toast.closeAll();
+        toast({
+            title: 'Movie Removed!',
+            position: 'top-right',
+            variant: 'solid',
+            description: 'This movie is removed from your watch list.',
+            status: 'error',
+            duration: 3000,
+            isClosable: true,
+        });
+    };
+
+    const AddToWatchListButton = () => {
+        return (
+            <Tooltip label='Add this movie to your watch list!' hasArrow placement='bottom'>
+                <Button
+                    border='1px'
+                    borderColor='#fcba03'
+                    variant='outline'
+                    leftIcon={<BsBookmarks style={{ fill: "#fcba03" }} />}
+                    onClick={addMovieToWatchList}>
+                    Watchlist
+                </Button>
+            </Tooltip>
+        );
+    };
+
+    const RemoveFromWatchListButton = () => {
+        return (
+            <Tooltip label='Remove this movie from your watch list!' hasArrow placement='bottom'>
+                <Button
+                    border='1px'
+                    borderColor='#fcba03'
+                    leftIcon={<BsBookmarksFill style={{ fill: "#fcba03" }} />}
+                    onClick={removeFromWatchList}>
+                    Watchlisted
+                </Button>
+            </Tooltip>
+        );
+    };
+
     return (
-        <Tooltip label='Add this movie to your watch list!' hasArrow placement='bottom'>
-            <Button
-                border='1px'
-                borderColor='#fcba03'
-                leftIcon={<BsBookmarks style={{ fill: "#fcba03" }} />}
-                onClick={addMovieToWatchList}>
-                Add to List
-            </Button>
-        </Tooltip>
+       <AddToWatchListButton/>
     );
 }
 

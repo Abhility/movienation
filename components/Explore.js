@@ -24,17 +24,18 @@ const Explore = () => {
 
     return (
         <VStack gap={3} align='center' width='100%'>
-            <Text fontSize={'xl'}>Search by genre!</Text>
+            <Text fontSize={'xl'}>Explore Movies By Genre!</Text>
             <HStack overflow='auto' flexWrap='wrap' gap={3}>
                 {
                     genres.map(genre => (
                         <Tag
                             key={genre.id}
-                            colorScheme={selectedGenre === genre.name ? 'blue' : 'white'}
                             py={2}
                             px={3}
                             mx='0 !important'
+                            colorScheme='blue'
                             borderRadius='full'
+                            variant={selectedGenre === genre.name ? 'subtle' : 'outline'}
                             cursor='pointer'
                             onClick={() => setSelectedGenre(genre.name)}
                         >

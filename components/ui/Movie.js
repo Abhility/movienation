@@ -12,13 +12,14 @@ const Movie = ({ movie }) => {
         return (
             <Link href={`/movies/${movie.id}`} passHref>
                 <Button leftIcon={<BiDetail />} rightIcon={<ArrowRightIcon />} colorScheme='blue' variant='outline'>
-                    More Details
+                   More Details
                 </Button>
             </Link>
         );
     };
 
     return (
+        movie &&
         <VStack
             borderRadius='lg'
             width='sm'
@@ -39,7 +40,7 @@ const Movie = ({ movie }) => {
                 flexDirection='column'
                 alignItems='flex-start'
                 gap={2}>
-                <Badge borderRadius='full' px='2' colorScheme='yellow'> {movie.release_date.split('-')[0]}</Badge>
+                <Badge borderRadius='full' px='2' colorScheme='yellow'> {movie.release_date?.split('-')[0]}</Badge>
                 <Tooltip label={movie.title} hasArrow placement='bottom'>
                     <Text noOfLines={1} fontSize='xl'>{movie.title}</Text>
                 </Tooltip>

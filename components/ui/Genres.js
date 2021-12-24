@@ -12,7 +12,6 @@ const Genres = ({ genreList, limit, size }) => {
                 <Tag py={2}
                     size={size ? size : 'md'}
                     key={genre} variant='outline'
-                    color='white'
                     mx='0 !important'
                     colorScheme={'blue'}>
                     <TagLeftIcon as={FcFilmReel} />

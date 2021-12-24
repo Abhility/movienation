@@ -59,7 +59,6 @@ const Pagination = (props) => {
                 py={2}
                 px={4}
                 variant='outline'
-                color='white'
                 borderRadius='full'>
                 {`Page ${props.currentPage} of ${props.noOfPages}`}
             </Badge>
