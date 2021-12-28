@@ -4,7 +4,7 @@ import { BsCheck2All } from "react-icons/bs";
 import { FcFilmReel } from "react-icons/fc";
 import { genres } from "../constants/global";
 import useHttp from "../hooks/useHttp";
-import Pagination from "./Pagination";
+import Pagination from "./ui/Pagination";
 import MovieList from "./ui/MoviesList";
 
 const Explore = () => {

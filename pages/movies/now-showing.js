@@ -1,6 +1,6 @@
 import NowShowing from "../../components/NowShowing"
 
-const NowShowingMovies = ({ movieData }) => {
+const NowShowingMoviesPage = ({ movieData }) => {
 
     return (
         <NowShowing movieData={movieData}/>
@@ -19,4 +19,4 @@ export const getStaticProps = async () => {
     }
 }
 
-export default NowShowingMovies;
+export default NowShowingMoviesPage;

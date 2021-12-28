@@ -2,7 +2,7 @@ import { VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import useHttp from "../hooks/useHttp";
 import WelcomeLoader from "./loaders/WelcomeLoader";
-import Pagination from "./Pagination";
+import Pagination from "./ui/Pagination";
 import MovieList from "./ui/MoviesList";
 
 const NowShowing = ({ movieData }) => {

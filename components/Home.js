@@ -3,7 +3,7 @@ import useHttp from "../hooks/useHttp";
 import { useState } from "react";
 import MovieList from "./ui/MoviesList";
 import WelcomeLoader from "./loaders/WelcomeLoader";
-import Pagination from "./Pagination";
+import Pagination from "./ui/Pagination";
 
 const Home = ({ movieData }) => {
     const { results: preLoadedMovies, total_pages: totalPages } = movieData;

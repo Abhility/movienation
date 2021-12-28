@@ -2,7 +2,7 @@ import { VStack, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/re
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import useHttp from "../hooks/useHttp";
-import Pagination from "./Pagination";
+import Pagination from "./ui/Pagination";
 import MovieList from "./ui/MoviesList";
 
 const Search = () => {
