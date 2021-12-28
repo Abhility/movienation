@@ -14,7 +14,7 @@ const MovieVideosPage = () => {
 
     return (
         <VStack
-            width='100%'
+            width='90%'
             align='center'
             mx='auto'
             gap='2rem'

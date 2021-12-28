@@ -6,7 +6,7 @@ import { AiFillYoutube } from "react-icons/ai"
 const YoutubeVideo = ({ videoData }) => {
     const [videoLoaded, setVideoLoaded] = useState(false);
     return (
-        <VStack align='flex-start' gap={1}>
+        <VStack align='flex-start' gap={1} width='100%'>
             <Tooltip label={videoData.official && 'Official Video'} hasArrow placement='right'>
                 <HStack>
                     <Tag size='lg' px={5} py={3} colorScheme='black'>
@@ -36,7 +36,7 @@ const YoutubeVideo = ({ videoData }) => {
                     {new Date(videoData.published_at).toDateString()}
                 </Badge>
             </HStack>
-            <AspectRatio width='1080px' ratio={16 / 9}>
+            <AspectRatio width='100%' max-width='1080px' ratio={16 / 9}>
                 <iframe
                     title={videoData.name}
                     src={`https://www.youtube.com/embed/${videoData.key}`}
