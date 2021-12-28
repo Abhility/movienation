@@ -10,11 +10,11 @@ const YoutubeVideo = ({ videoData }) => {
             <Tooltip label={videoData.official && 'Official Video'} hasArrow placement='right'>
                 <HStack>
                     <Tag size='lg' px={5} py={3} colorScheme='black'>
-                        <TagLeftIcon as={AiFillYoutube} size='lg' style={{fill : '#8B0000'}} />
+                        <TagLeftIcon as={AiFillYoutube} style={{ fill: '#8B0000' }} />
                         <TagLabel>
                             {videoData.name}
                         </TagLabel>
-                        {videoData.official && <TagRightIcon as={MdVerified} style={{ fill: '#1DA1F2' }}/>}
+                        {videoData.official && <TagRightIcon as={MdVerified} style={{ fill: '#1DA1F2' }} />}
                     </Tag>
                 </HStack>
             </Tooltip>
@@ -36,7 +36,7 @@ const YoutubeVideo = ({ videoData }) => {
                     {new Date(videoData.published_at).toDateString()}
                 </Badge>
             </HStack>
-            <AspectRatio width='100%' max-width='1080px' ratio={16 / 9}>
+            <AspectRatio width={videoLoaded ? '100%' : '0'} max-width='1080px' ratio={16 / 9}>
                 <iframe
                     title={videoData.name}
                     src={`https://www.youtube.com/embed/${videoData.key}`}
@@ -44,7 +44,7 @@ const YoutubeVideo = ({ videoData }) => {
                     allowFullScreen
                 />
             </AspectRatio>
-            {!videoLoaded && <Skeleton width='1080px' height='480px' />}
+            {!videoLoaded && <Skeleton width='100%' height='480px' />}
         </VStack>
     );
 };
