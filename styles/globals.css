@@ -54,15 +54,3 @@ a {
 .not-found-text-animation {
   width: 20%;
 }
-
-/* To explicitly control height of the poster carousel */
-.carousel-root {
-  height: 100% !important;
-}
-.carousel-slider {
-  height: 100% !important;
-}
-.poster-carousel-image {
-  height: 32rem !important;
-  object-fit: fill !important;
-}

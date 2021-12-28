@@ -25,7 +25,7 @@ const Explore = () => {
     return (
         <VStack gap={3} align='center' width='100%'>
             <Text fontSize={'xl'}>Explore Movies By Genre!</Text>
-            <HStack overflow='auto' flexWrap='wrap' gap={3}>
+            <HStack gap={3} flexWrap='wrap'>
                 {
                     genres.map(genre => (
                         <Tag

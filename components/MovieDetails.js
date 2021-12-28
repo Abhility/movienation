@@ -108,7 +108,7 @@ const MovieDetails = ({ movie }) => {
                 display='flex'
                 alignItems='center'
                 width='100%'
-                height='40rem'
+                //height='40rem'
                 mt={1}
                 overflow='hidden'>
                 {showSliders && images?.backdrops.length > 0 ?
@@ -137,7 +137,7 @@ const MovieDetails = ({ movie }) => {
                 display='flex'
                 alignItems='center'
                 width='32rem'
-                height='32rem'
+              //  height='40rem'
                 boxShadow='dark-lg'
                 borderRadius='lg'
                 overflow='hidden'>

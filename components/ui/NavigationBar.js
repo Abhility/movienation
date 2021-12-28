@@ -1,29 +1,34 @@
 import {
     Box, Flex, Avatar, Button,
     Menu, MenuButton, MenuList, MenuItem, MenuDivider,
-    useColorModeValue, useColorMode, Center, HStack, LinkBox, Text,
+    useColorModeValue, useColorMode, Center, HStack, Text,
+    VStack, Drawer, DrawerOverlay, DrawerContent, DrawerHeader,
+    DrawerBody, useDisclosure, CloseButton, IconButton,
 } from '@chakra-ui/react';
 import { Icon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { MdExplore, MdMovie, MdSearch, MdTrendingUp } from 'react-icons/md';
-import { BiMoviePlay } from 'react-icons/bi';
+import { MdHome, MdExplore, MdMovie, MdSearch, MdTrendingUp } from 'react-icons/md';
 import Link from 'next/link';
+import { FiMenu } from 'react-icons/fi';
+import Logo from './Logo';
 
 const links = [
+    { name: 'Home', url: '/', icon: MdHome },
     { name: 'Trending', url: '/movies/trending', icon: MdTrendingUp },
     { name: 'Explore', url: '/movies/explore', icon: MdExplore },
     { name: 'Now Showing', url: '/movies/now-showing', icon: MdMovie },
     { name: 'Search', url: '/movies/search', icon: MdSearch },
 ];
 
-const NavLink = ({ children, url }) => (
+const NavLink = ({ children, url, py, width }) => (
     <Box
         px={2}
-        py={1}
+        py={py}
+        width={width}
         cursor='pointer'
-        rounded={'md'}
+        rounded='md'
         _hover={{
             textDecoration: 'none',
-            bg: useColorModeValue('gray.200', 'gray.700'),
+            bg: useColorModeValue('blue.200', 'blue.700'),
         }}>
         <Link href={url}>
             {children}
@@ -31,73 +36,154 @@ const NavLink = ({ children, url }) => (
     </Box>
 );
 
-const NavigationBar = () => {
+const NavLinks = (props) => {
+    const { onClick, ...otherProps } = props;
+    return (
+        links.map(link => (
+            <NavLink key={link.name} url={link.url} {...otherProps}>
+                <HStack onClick={onClick}>
+                    <Icon as={link.icon} />
+                    <Text>{link.name}</Text>
+                </HStack>
+            </NavLink>
+        ))
+    )
+
+};
+
+const MenuBar = () => {
+    return (
+        <Menu>
+            <MenuButton
+                as={Button}
+                rounded={'full'}
+                variant={'link'}
+                cursor={'pointer'}
+                minW={0}>
+                <Avatar
+                    size={'sm'}
+                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                />
+            </MenuButton>
+            <MenuList alignItems={'center'}>
+                <br />
+                <Center>
+                    <Avatar
+                        size={'2xl'}
+                        src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    />
+                </Center>
+                <br />
+                <Center>
+                    <p>Username</p>
+                </Center>
+                <br />
+                <MenuDivider />
+                <MenuItem>Profile</MenuItem>
+                <MenuItem>Your WatchList</MenuItem>
+                <MenuItem>Logout</MenuItem>
+            </MenuList>
+        </Menu>
+    );
+}
+
+const ThemeButton = () => {
     const { colorMode, toggleColorMode } = useColorMode();
     return (
-        <>
-            <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-                <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-                    <NavLink url='/'>
-                        <HStack>
-                            <Icon as={BiMoviePlay} />
-                            <Text>MovieNation</Text>
-                        </HStack>
-                    </NavLink>
-                    <HStack gap='5rem'>
-                        <HStack gap={4}>
-                            {
-                                links.map(link => (
-                                    <NavLink key={link.name} url={link.url}>
-                                        <HStack>
-                                            <Icon as={link.icon} />
-                                            <Text>{link.name}</Text>
-                                        </HStack>
-                                    </NavLink>
-                                ))
-                            }
-                        </HStack>
-                        <HStack spacing={7}>
-                            <Button onClick={toggleColorMode}>
-                                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-                            </Button>
+        <IconButton
+            onClick={toggleColorMode}
+            variant='outline'
+            aria-label='change theme'
+            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+        />
+    );
+}
 
-                            <Menu>
-                                <MenuButton
-                                    as={Button}
-                                    rounded={'full'}
-                                    variant={'link'}
-                                    cursor={'pointer'}
-                                    minW={0}>
-                                    <Avatar
-                                        size={'sm'}
-                                        src={'https://avatars.dicebear.com/api/male/username.svg'}
-                                    />
-                                </MenuButton>
-                                <MenuList alignItems={'center'}>
-                                    <br />
-                                    <Center>
-                                        <Avatar
-                                            size={'2xl'}
-                                            src={'https://avatars.dicebear.com/api/male/username.svg'}
-                                        />
-                                    </Center>
-                                    <br />
-                                    <Center>
-                                        <p>Username</p>
-                                    </Center>
-                                    <br />
-                                    <MenuDivider />
-                                    <MenuItem>Profile</MenuItem>
-                                    <MenuItem>Your WatchList</MenuItem>
-                                    <MenuItem>Logout</MenuItem>
-                                </MenuList>
-                            </Menu>
-                        </HStack>
+const SideBar = ({ isOpen, onClose }) => {
+    return (
+        <Drawer
+            placement='left'
+            onClose={onClose}
+            isOpen={isOpen}
+            size='full'>
+            <DrawerOverlay />
+            <DrawerContent bg={useColorModeValue('gray.100', 'gray.900')}>
+                <DrawerHeader borderBottomWidth='1px'>
+                    <HStack justify='space-between'>
+                        <Logo />
+                        <CloseButton onClick={onClose} />
                     </HStack>
-                </Flex>
-            </Box>
+                </DrawerHeader>
+                <DrawerBody>
+                    <VStack gap={4} align='flex-start'>
+                        <NavLinks py={4} width='100%' onClick={onClose} />
+                    </VStack>
+                </DrawerBody>
+            </DrawerContent>
+        </Drawer>
+    )
+}
+
+
+const DesktopNavigation = () => {
+    return (
+        <Box
+            bg={useColorModeValue('gray.100', 'gray.900')}
+            px={4}
+            boxShadow='dark-lg'
+            display={{ base: 'none', lg: 'block' }}
+        >
+            <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+                <Logo />
+                <HStack gap='5rem'>
+                    <HStack gap={4}>
+                        <NavLinks py={2} width='auto' />
+                    </HStack>
+                    <HStack spacing={7}>
+                        <ThemeButton />
+                        <MenuBar />
+                    </HStack>
+                </HStack>
+            </Flex>
+        </Box>
+    );
+};
+
+const MobileNavigation = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    return (
+        <Box
+            bg={useColorModeValue('gray.100', 'gray.900')}
+            px={4}
+            py={3}
+            boxShadow='dark-lg'
+            justifyContent='space-between'
+            display={{ base: 'flex', lg: 'none' }}
+        >
+            <IconButton
+                variant="outline"
+                onClick={onOpen}
+                aria-label="open menu"
+                icon={<FiMenu />}
+            />
+            <SideBar isOpen={isOpen} onClose={onClose} />
+            <Logo />
+            <HStack gap={2}>
+                <ThemeButton />
+                <MenuBar />
+            </HStack>
+        </Box>
+    );
+}
+
+const NavigationBar = () => {
+    return (
+        <>
+            <DesktopNavigation />
+            <MobileNavigation />
         </>
     );
+
 };
 
 export default NavigationBar;
