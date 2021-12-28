@@ -1,40 +1,60 @@
-import { AspectRatio, Text, VStack, HStack, Tooltip, Skeleton, Badge, Tag, TagLabel, TagLeftIcon, TagRightIcon } from "@chakra-ui/react";
+import {
+    AspectRatio, Text, VStack, HStack,
+    Skeleton, Badge, Tag, TagLabel, TagLeftIcon,
+    useColorModeValue
+} from "@chakra-ui/react";
 import { useState } from "react";
-import { MdVerified } from "react-icons/md";
-import { AiFillYoutube } from "react-icons/ai"
+import { MdVerified, MdVideocam } from "react-icons/md";
+import { AiFillCalendar, AiFillYoutube } from "react-icons/ai"
 
 const YoutubeVideo = ({ videoData }) => {
     const [videoLoaded, setVideoLoaded] = useState(false);
     return (
         <VStack align='flex-start' gap={1} width='100%'>
-            <Tooltip label={videoData.official && 'Official Video'} hasArrow placement='right'>
-                <HStack>
-                    <Tag size='lg' px={5} py={3} colorScheme='black'>
-                        <TagLeftIcon as={AiFillYoutube} style={{ fill: '#8B0000' }} />
-                        <TagLabel>
-                            {videoData.name}
-                        </TagLabel>
-                        {videoData.official && <TagRightIcon as={MdVerified} style={{ fill: '#1DA1F2' }} />}
-                    </Tag>
-                </HStack>
-            </Tooltip>
-            <HStack gap={2}>
+            <HStack width='100%'>
+                <Tag size='lg' px={5} py={3} colorScheme={useColorModeValue('blue', 'dark')}>
+                    <TagLeftIcon as={AiFillYoutube} style={{ fill: '#8B0000' }} />
+                    <TagLabel>
+                        {videoData.name}
+                    </TagLabel>
+                </Tag>
+            </HStack>
+            <HStack gap={2} flexWrap='wrap'>
                 <Badge
                     colorScheme='blue'
                     py={1}
                     px={3}
                     variant='outline'
+                    mx='0 !important'
                     borderRadius='xl'>
-                    {videoData.type}
+                    <HStack>
+                        <MdVideocam style={{ fill: '#3182ce' }} />
+                        <Text>{videoData.type}</Text>
+                    </HStack>
                 </Badge>
                 <Badge
                     colorScheme='yellow'
                     py={1}
                     px={3}
+                    mx='0 !important'
                     variant='outline'
                     borderRadius='xl'>
-                    {new Date(videoData.published_at).toDateString()}
+                    <HStack>
+                        <AiFillCalendar style={{ fill: '#DBA506' }} />
+                        <Text> {new Date(videoData.published_at).toDateString()}</Text>
+                    </HStack>
                 </Badge>
+                {videoData.official && <Badge
+                    colorScheme='blue'
+                    py={1}
+                    px={3}
+                    mx='0 !important'
+                    borderRadius='xl'>
+                    <HStack>
+                        <MdVerified style={{ fill: '#1DA1F2' }} />
+                        <Text>Official</Text>
+                    </HStack>
+                </Badge>}
             </HStack>
             <AspectRatio width={videoLoaded ? '100%' : '0'} max-width='1080px' ratio={16 / 9}>
                 <iframe
