@@ -15,9 +15,9 @@ import RelatedMovies from "./RelatedMovies";
 import MovieSocialLinks from "./MovieSocialLinks";
 import WatchListButton from "./WatchListButton";
 import { useEffect, useState } from "react";
-import ImagesCarousel from "./carousel/ImagesCarousel";
 import { imageUrls } from '../constants/global'
 import useHttp from "../hooks/useHttp";
+import Carousel from "./carousel/Carousel";
 
 const MovieDetails = ({ movie }) => {
     const movieId = movie.id;
@@ -88,37 +88,28 @@ const MovieDetails = ({ movie }) => {
         );
     };
 
-    const carouselRenderItem = (isFullSize, item, otherProps) => {
-        const imageBaseUrl = isFullSize ? imageUrls.TMDB.full : imageUrls.TMDB.medium;
-        return (
-            <Image
-                src={`${imageBaseUrl}${item.props.image.file_path}`}
-                alt={item.props.image.file_path}
-                objectFit='fill'
-                className="backdrop-carousel-image"
-                fallbackSrc={imageUrls.STOCK.backdrop}
-                height='100%'
-                {...otherProps} />
-        );
-    };
-
     const BackdropCarousel = () => {
         return (
             <Box
                 display='flex'
                 alignItems='center'
                 width='100%'
-                //height='40rem'
-                mt={1}
+                height='40rem'
                 overflow='hidden'>
                 {showSliders && images?.backdrops.length > 0 ?
-                    <ImagesCarousel
-                        images={images?.backdrops}
-                        renderItem={carouselRenderItem.bind(null, true)}
-                        infiniteLoop={true}
-                        stopOnHover={false}
-                        autoPlay={true}
-                        showThumbs={false}
+                    <Carousel
+                        items={images.backdrops.map(img => (
+                            <Image src={`${imageUrls.TMDB.full}${img.file_path}`}
+                                alt={movie.title}
+                                fallbackSrc={imageUrls.STOCK.backdrop}
+                                width='100%'
+                                height='100%'
+                                objectFit='fill' />
+                        ))}
+                        effect='fade'
+                        autoplayDuration={3500}
+                        dots={true}
+                        arrows={true}
                     /> :
                     <Image src={`${imageUrls.TMDB.full}${movie.backdrop_path}`}
                         alt={movie.title}
@@ -136,23 +127,24 @@ const MovieDetails = ({ movie }) => {
             <Box
                 display='flex'
                 alignItems='center'
-                width='32rem'
-              //  height='40rem'
+                width='30rem'
+                height='35rem'
                 boxShadow='dark-lg'
                 borderRadius='lg'
                 overflow='hidden'>
                 {showSliders && images?.posters.length > 0 ?
-                    <ImagesCarousel images={images?.posters} className="poster-carousel"
-                        renderItem={carouselRenderItem.bind(null, false)}
-                        showIndicators={false}
-                        infiniteLoop={true}
-                        autoPlay={true}
-                        interval={1500}
-                        stopOnHover={false}
-                        showArrows={false}
-                        dynamicHeight={true}
-                        showThumbs={false}
-                    /> :
+                    <Carousel
+                    items={images.posters.map(img => (
+                            <Image src={`${imageUrls.TMDB.medium}${img.file_path}`}
+                                alt={movie.title}
+                                fallbackSrc={imageUrls.STOCK.backdrop}
+                                width='100%'
+                                height='100%'
+                                objectFit='fill' />
+                        ))}
+                        effect='cards'
+                    />
+                    :
                     <Image src={`${imageUrls.TMDB.medium}${movie.poster_path}`}
                         alt={movie.title}
                         width='100%'
@@ -167,7 +159,7 @@ const MovieDetails = ({ movie }) => {
     return (
         <Box display='flex' alignItems='center' justifyContent='center' gap={4} flexWrap='wrap'>
             {isLargerThan1150 && <BackdropCarousel />}
-            <Box display='flex' flexWrap='wrap' width='100%' p={5} gap='2rem' alignItems='center' justifyContent='space-evenly'>
+            <Box display='flex' flexWrap='wrap' width='100%' p={3} gap='2rem' alignItems='center' justifyContent='space-evenly'>
                 <PosterCarousel />
                 <VStack align={isLargerThan1265 ? 'flex-start' : 'center'} spacing='1.5rem' flexWrap="wrap">
                     <Text fontSize='3xl'>{movie.title}</Text>

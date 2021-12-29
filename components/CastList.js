@@ -3,9 +3,10 @@ import { Box, Divider, Text, VStack } from '@chakra-ui/react';
 import Cast from "./ui/Cast";
 import CastSkeleton from "./loaders/skeletons/CastSkeleton";
 import useHttp from "../hooks/useHttp";
+import Carousel from './carousel/CoverFlowCarousel';
 
 const CastList = ({ movieId }) => {
-    const {data,loading, hasError } = useHttp(`http://localhost:5000/movie-info/getmovie/${movieId}/credits`);
+    const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/getmovie/${movieId}/credits`);
     const castData = data?.cast;
 
     let CastListContainer = () => {
@@ -19,7 +20,10 @@ const CastList = ({ movieId }) => {
                     px={5}
                     justifyContent='center'
                     alignItems='center'>
-                    {castData.map(cast => <Cast cast={cast} key={cast.id} />)}
+                    <Carousel
+                        items={castData.map(cast => <Cast cast={cast} key={cast.id} />)}
+                        autoplayDuration={3000}
+                    />
                 </Box> : null
         )
     };
