@@ -10,7 +10,7 @@ const RelatedMovies = ({ movieId }) => {
     relatedMovies = relatedMovies?.slice(randomIndex, randomIndex + 3);
 
     return (
-        <VStack gap='1rem' width='100%' mx={5} mb={5}>
+        <VStack gap='1rem' width='100%' mx={5} mb={5} gap={5}>
             <Tooltip label='This is based on the genre of the movies' hasArrow placement='right'>
                 <Text fontSize='4xl'>Related Movies</Text>
             </Tooltip>

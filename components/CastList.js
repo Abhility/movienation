@@ -29,7 +29,7 @@ const CastList = ({ movieId }) => {
     };
 
     return (
-        <VStack width='100%' mx={5} alignItems='center'>
+        <VStack width='100%' mx={5} alignItems='center' gap={5}>
             <Text fontSize='4xl'>Cast</Text>
             <Divider />
             {loading ? <CastSkeleton count={20} /> : <CastListContainer />}
