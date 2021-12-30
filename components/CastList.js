@@ -15,13 +15,14 @@ const CastList = ({ movieId }) => {
                 <Box display='flex'
                     flexWrap='wrap'
                     width='100%'
+                    height='100%'
                     gap='2rem'
                     mt={3}
                     px={5}
                     justifyContent='center'
                     alignItems='center'>
                     <Carousel
-                        items={castData.map(cast => <Cast cast={cast} key={cast.id} />)}
+                        items={castData.map(cast => <Cast cast={cast}/>)}
                         autoplayDuration={3000}
                     />
                 </Box> : null
@@ -29,7 +30,7 @@ const CastList = ({ movieId }) => {
     };
 
     return (
-        <VStack width='100%' mx={5} alignItems='center' gap={5}>
+        <VStack width='100%' height='500px' mx={5} alignItems='center' gap={5}>
             <Text fontSize='4xl'>Cast</Text>
             <Divider />
             {loading ? <CastSkeleton count={20} /> : <CastListContainer />}

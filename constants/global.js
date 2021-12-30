@@ -27,7 +27,10 @@ export const imageUrls = {
         full: 'https://image.tmdb.org/t/p/original'
     },
     STOCK: {
-        cast : '../../cast-not-found.jpg',
+        cast : {
+           man : '../../man.png',
+           woman : '../../woman.png'
+        },
         backdrop: '../../image-not-found.jpg'
     }
 }
