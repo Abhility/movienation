@@ -79,3 +79,7 @@ a {
   width: 20% !important;
   min-width: 200px;
 }
+.creative-carousel.swiper {
+  width: 40% !important;
+  min-width: 300px;
+}

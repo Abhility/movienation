@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { imageUrls } from '../constants/global'
 import useHttp from "../hooks/useHttp";
 import Carousel from "./carousel/Carousel";
+import Reviews from "./Reviews";
 
 const MovieDetails = ({ movie }) => {
     const movieId = movie.id;
@@ -181,6 +182,7 @@ const MovieDetails = ({ movie }) => {
                     </HStack>
                 </VStack>
                 <CastList movieId={movie.id} />
+                <Reviews movieId={movieId}/>
                 <RelatedMovies movieId={movie.id} />
             </Box>
         </Box>

@@ -1,17 +1,17 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Autoplay } from 'swiper';
+import { EffectCoverflow, EffectCreative, Autoplay, } from 'swiper';
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
-const CoverFlowCarousel = ({ items, autoplayDuration = 2000 }) => {
+const CoverFlowCarousel = ({ items, autoplayDuration = 2000 , effect='coverflow' }) => {
 
     return (
         <>
             <Swiper
-                className='coverflow-carousel'
+                className={`${effect}-carousel`}
                 grabCursor={true}
-                effect='coverflow'
-                modules={[EffectCoverflow, Autoplay]}
+                effect={effect}
+                modules={[EffectCoverflow, EffectCreative, Autoplay]}
                 autoplay={{
                     delay: autoplayDuration,
                     disableOnInteraction: false
@@ -24,6 +24,23 @@ const CoverFlowCarousel = ({ items, autoplayDuration = 2000 }) => {
                     depth: 100,
                     modifier: 3,
                     slideShadows: true,
+                }}
+                creativeEffect={{
+                    prev: {
+                        shadow: true,
+                        translate: [
+                            0,
+                            0,
+                            -400
+                        ]
+                    },
+                    next: {
+                        translate: [
+                            '100%',
+                            0,
+                            0
+                        ]
+                    }
                 }}
             >
                 {
