@@ -1,4 +1,4 @@
-import { Avatar, Badge, Divider, HStack, Text, VStack } from '@chakra-ui/react';
+import { Avatar, Badge, Divider, HStack, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 import { AiFillCalendar } from 'react-icons/ai';
 import { imageUrls } from '../../constants/global';
 import Rating from './Rating';
@@ -10,7 +10,7 @@ const Review = ({ review }) => {
             align='flex-start'
             justify='center'
             p={4}
-            bg='#171923'
+            bg={useColorModeValue('gray.100', 'gray.900')}
             borderRadius='lg'
             height='100%'
             width='100%'>
@@ -18,18 +18,18 @@ const Review = ({ review }) => {
                 <HStack gap={3}>
                     <Avatar name={author.name} src={`${imageUrls.TMDB.small}${author.avatar_path}`} size='md' />
                     <VStack align='flex-start'>
-                        <Text color='white' fontWeight='bold'>{author.username}</Text>
+                        <Text fontWeight='bold'>{author.username}</Text>
                         <Text color='gray' fontSize='sm'>{new Date(review.created_at).toDateString()}</Text>
                     </VStack>
                 </HStack>
             </HStack>
             <Divider />
             <HStack height='50%' align='flex-start'>
-                <Text color='white' noOfLines={4}>{review.content}</Text>
+                <Text noOfLines={4}>{review.content}</Text>
             </HStack>
             <Divider />
             <VStack align='flex-start'>
-                <Text color='white' fontSize='sm'>Rating</Text>
+                <Text fontSize='sm'>Rating</Text>
                 <Rating rating={author.rating} />
             </VStack>
         </VStack>
