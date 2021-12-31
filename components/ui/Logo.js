@@ -3,9 +3,9 @@ import { BiMoviePlay } from "react-icons/bi";
 
 const Logo = () => {
     return (
-        <HStack>
+        <HStack align='center'>
             <Icon as={BiMoviePlay} />
-            <Text>MovieNation</Text>
+            <Text fontSize='xl'>MovieNation</Text>
         </HStack>
     )
 };

@@ -21,7 +21,7 @@ const Search = () => {
     }
 
     return (
-        <VStack align='center' width='100%' gap={5}>
+        <VStack align='center' width='100%' minHeight='100vh' gap={5}>
             <Text fontSize={'xl'}>Search Here!</Text>
             <InputGroup>
                 <InputLeftElement pointerEvents='none'>

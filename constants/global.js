@@ -34,3 +34,11 @@ export const imageUrls = {
         backdrop: '../../image-not-found.jpg'
     }
 }
+
+export const LINKS = {
+    MINE : {
+        insta: 'https://www.instagram.com/abhility_',
+        github:'https://github.com/Abhility',
+        linkedIn:'https://www.linkedin.com/in/abhishek-07aa99131/'
+    }
+}
