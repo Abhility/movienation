@@ -3,7 +3,7 @@ import { Box, Divider, Text, VStack } from '@chakra-ui/react';
 import Cast from "./ui/Cast";
 import CastSkeleton from "./loaders/skeletons/CastSkeleton";
 import useHttp from "../hooks/useHttp";
-import Carousel from './carousel/CoverFlowCarousel';
+import Carousel from './carousel/Carousel';
 
 const CastList = ({ movieId }) => {
     const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/getmovie/${movieId}/credits`);
@@ -23,6 +23,8 @@ const CastList = ({ movieId }) => {
                     alignItems='center'>
                     <Carousel
                         items={castData.map(cast => <Cast cast={cast}/>)}
+                        effect='coverflow'
+                        arrows={true}
                         autoplayDuration={3000}
                     />
                 </Box> : null

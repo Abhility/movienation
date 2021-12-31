@@ -8,6 +8,7 @@ const Review = ({ review }) => {
     return (
         <VStack
             align='flex-start'
+            justify='center'
             p={4}
             bg='#171923'
             borderRadius='lg'
@@ -17,9 +18,7 @@ const Review = ({ review }) => {
                 <HStack gap={3}>
                     <Avatar name={author.name} src={`${imageUrls.TMDB.small}${author.avatar_path}`} size='md' />
                     <VStack align='flex-start'>
-                        <Text color='white' fontWeight='bold'>
-                            Segun Adebayo
-                        </Text>
+                        <Text color='white' fontWeight='bold'>{author.username}</Text>
                         <Text color='gray' fontSize='sm'>{new Date(review.created_at).toDateString()}</Text>
                     </VStack>
                 </HStack>

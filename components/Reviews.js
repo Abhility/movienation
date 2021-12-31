@@ -1,7 +1,7 @@
 import { Divider, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import useHttp from "../hooks/useHttp";
-import CoverFlowCarousel from "./carousel/CoverFlowCarousel";
+import Carousel from "./carousel/Carousel";
 import Review from "./ui/Review";
 
 const Reviews = ({ movieId }) => {
@@ -15,8 +15,10 @@ const Reviews = ({ movieId }) => {
             <Text fontSize='4xl'>Reviews</Text>
             <Divider />
             {loading ? <h1>loading</h1> :
-                <CoverFlowCarousel
+                <Carousel
                     items={movieReviews.map(review => <Review review={review} />)}
+                    dots={true}
+                    pauseOnHover={true}
                     effect='creative'
                 />
             }
