@@ -16,17 +16,17 @@ const SocialButton = ({
     return (
         <chakra.button
             bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-            rounded={'full'}
+            rounded='full'
             w={8}
             h={8}
-            cursor={'pointer'}
-            as={'a'}
+            cursor='pointer'
+            as='a'
             href={href}
-            isExternal
-            display={'inline-flex'}
-            alignItems={'center'}
-            justifyContent={'center'}
-            transition={'background 0.3s ease'}
+            target='_blank'
+            display='inline-flex'
+            alignItems='center'
+            justifyContent='center'
+            transition='background 0.3s ease'
             _hover={{
                 bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
             }}>
@@ -62,27 +62,27 @@ const Footer = () => {
             </VStack>
             <Box
                 borderTopWidth={1}
-                borderStyle={'solid'}
+                borderStyle='solid'
                 borderColor={useColorModeValue('gray.200', 'gray.700')}>
                 <Container
                     as={Stack}
-                    maxW={'6xl'}
+                    maxW='6xl'
                     py={4}
                     direction={{ base: 'column', md: 'row' }}
                     spacing={4}
                     justify={{ base: 'center', md: 'space-between' }}
                     align={{ base: 'center', md: 'center' }}>
-                    <Text>© 2020 MovieNation. All rights reserved.</Text>
+                    <Text>{`©${new Date().getFullYear()}  MovieNation. All rights reserved.`}</Text>
                     <VStack>
                         <Text fontSize='md'>Developed with <AiFillHeart style={{ fill: '#C53030', display: 'inline' }} /> by Abhishek</Text>
                         <Stack direction={'row'} spacing={6}>
-                            <SocialButton label={'Github'} href={LINKS.MINE.github}>
+                            <SocialButton label='Github' href={LINKS.MINE.github}>
                                 <FaGithub />
                             </SocialButton>
-                            <SocialButton label={'LinkedIn'} href={LINKS.MINE.linkedIn}>
+                            <SocialButton label='LinkedIn' href={LINKS.MINE.linkedIn}>
                                 <FaLinkedin />
                             </SocialButton>
-                            <SocialButton label={'Instagram'} href={LINKS.MINE.insta}>
+                            <SocialButton label='Instagram' href={LINKS.MINE.insta}>
                                 <FaInstagram />
                             </SocialButton>
                         </Stack>

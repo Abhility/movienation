@@ -10,6 +10,7 @@ import { MdHome, MdExplore, MdMovie, MdSearch, MdTrendingUp } from 'react-icons/
 import Link from 'next/link';
 import { FiMenu } from 'react-icons/fi';
 import Logo from './Logo';
+import { useRouter } from 'next/router';
 
 const links = [
     { name: 'Home', url: '/', icon: MdHome },
@@ -19,22 +20,27 @@ const links = [
     { name: 'Search', url: '/movies/search', icon: MdSearch },
 ];
 
-const NavLink = ({ children, url, py, width }) => (
-    <Box
-        px={2}
-        py={py}
-        width={width}
-        cursor='pointer'
-        rounded='md'
-        _hover={{
-            textDecoration: 'none',
-            bg: useColorModeValue('blue.200', 'blue.700'),
-        }}>
-        <Link href={url}>
-            {children}
-        </Link>
-    </Box>
-);
+const NavLink = ({ children, url, py, width }) => {
+    const { pathname } = useRouter();
+    return (
+        <Box
+            px={2}
+            py={py}
+            width={width}
+            cursor='pointer'
+            fontSize={pathname === url ? 'xl' : 'md'}
+            fontWeight={pathname === url ? 'bold' : 'none'}
+            _hover={{
+                textDecoration: 'none',
+                borderRadius: 'md',
+                bg: useColorModeValue('blue.200', 'blue.700'),
+            }}>
+            <Link href={url}>
+                {children}
+            </Link>
+        </Box>
+    );
+};
 
 const NavLinks = (props) => {
     const { onClick, ...otherProps } = props;

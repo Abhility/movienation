@@ -1,7 +1,6 @@
 import { VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import useHttp from "../hooks/useHttp";
-import WelcomeLoader from "./loaders/WelcomeLoader";
 import Pagination from "./ui/Pagination";
 import MovieList from "./ui/MoviesList";
 
@@ -17,7 +16,6 @@ const NowShowing = ({ movieData }) => {
 
     return (
         <VStack my={10} mx={3} gap={5}>
-            <WelcomeLoader />
             <MovieList movies={movies} loading={loading} count={12} />
             <Pagination
                 noOfPages={totalPages}
