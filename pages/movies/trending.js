@@ -1,62 +1,34 @@
+import { HStack, Image } from "@chakra-ui/react";
+import Carousel from '../../components/carousel/Carousel';
+import Movie from "../../components/ui/Movie";
 
-
-
-
-import React, { useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-coverflow"
-import "swiper/css/pagination"
-
-
-
-
-// import Swiper core and required modules
-import SwiperCore, {
-    EffectCoverflow, Pagination
-} from 'swiper';
-
-// install Swiper modules
-SwiperCore.use([EffectCoverflow, Pagination]);
-
-function Slider() {
-
-
-
+const TrendingMoviesPage = ({ movieData }) => {
+    const { results: movies } = movieData;
     return (
-        <>
-            <Swiper effect={'coverflow'} grabCursor={true} centeredSlides={true} slidesPerView={'auto'} coverflowEffect={{
-                "rotate": 50,
-                "stretch": 0,
-                "depth": 100,
-                "modifier": 1,
-                "slideShadows": true
-            }} pagination={true} className="mySwiper">
-                <SwiperSlide><img src="https://swiperjs.com/demos/images/nature-1.jpg" /></SwiperSlide>
-                <SwiperSlide><img src="https://swiperjs.com/demos/images/nature-2.jpg" /></SwiperSlide>
-                <SwiperSlide><img src="https://swiperjs.com/demos/images/nature-3.jpg" /></SwiperSlide>
-                <SwiperSlide><img src="https://swiperjs.com/demos/images/nature-4.jpg" /></SwiperSlide>
-                <SwiperSlide><img src="https://swiperjs.com/demos/images/nature-5.jpg" /></SwiperSlide>
-                <SwiperSlide><img src="https://swiperjs.com/demos/images/nature-6.jpg" /></SwiperSlide>
-                <SwiperSlide><img src="https://swiperjs.com/demos/images/nature-7.jpg" /></SwiperSlide>
-                <SwiperSlide><img src="https://swiperjs.com/demos/images/nature-8.jpg" /></SwiperSlide>
-                <SwiperSlide><img src="https://swiperjs.com/demos/images/nature-9.jpg" /></SwiperSlide>
-            </Swiper>
-        </>
-    )
-}
-const TrendingMoviesPage = () => {
-    return (
-        <>
-            <h1>Trending...</h1>
-            <Slider />
-        </>
-    )
+        <HStack width='30%' mx='auto' mt={5}>
+            <Carousel
+                effect='cube'
+                items={movies.map(movie => <Movie movie={movie} />)} />
+        </HStack>
+    );
 };
 
+export const getStaticProps = async () => {
+    const response = await fetch('http://localhost:5000/movie-info/trending?page=1');
+    const data = await response.json();
 
+    return {
+        props: {
+            movieData: data
+        },
+        revalidate: 80000
+    }
+}
 
 export default TrendingMoviesPage;
+
+// items={movies.map(movie => <Image src={`${imageUrls.TMDB.medium}${movie.poster_path}`}
+// alt={movie.title}
+// borderRadius='xl'
+// width='100%'
+// height='100%' />)}

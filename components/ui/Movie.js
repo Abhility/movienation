@@ -1,4 +1,4 @@
-import { Box, Badge, Image, Text, Button, VStack, Tooltip } from '@chakra-ui/react';
+import { Box, Badge, Image, Text, Button, VStack, Tooltip, useColorModeValue } from '@chakra-ui/react';
 import { ArrowRightIcon } from '@chakra-ui/icons';
 import { BiDetail } from 'react-icons/bi';
 import Genres from './Genres';
@@ -23,6 +23,7 @@ const Movie = ({ movie }) => {
         <VStack
             borderRadius='lg'
             width='sm'
+            bg={useColorModeValue('gray.100', 'gray.900')}
             min-height='xl'
             overflow='hidden'
             boxShadow='dark-lg'

@@ -1,12 +1,17 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCards, EffectFade, EffectCoverflow, EffectCreative, Autoplay, Navigation, Pagination } from 'swiper';
+import {
+    EffectCards, EffectFade, EffectCoverflow,
+    EffectCreative, EffectCube, Autoplay, Navigation, Pagination
+} from 'swiper';
 import "swiper/css";
-import "swiper/css/effect-fade"
-import "swiper/css/effect-cards"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
+import "swiper/css/effect-fade";
+import "swiper/css/effect-cards";
+import "swiper/css/effect-coverflow";
+import "swiper/css/effect-cube";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-const Carousel = ({ items, effect, autoplayDuration = 2000, dots = false, arrows = false, pauseOnHover = false }) => {
+const Carousel = ({ items, effect, autoplayDuration = 2000, dots = false, arrows = false }) => {
 
     return (
         <>
@@ -14,11 +19,12 @@ const Carousel = ({ items, effect, autoplayDuration = 2000, dots = false, arrows
                 className={`${effect}-carousel`}
                 grabCursor={true}
                 effect={effect}
-                modules={[EffectCards, EffectFade, EffectCoverflow, EffectCreative, Autoplay, Navigation, Pagination]}
+                modules={[EffectCards, EffectFade, EffectCoverflow,
+                    EffectCreative, Autoplay, Navigation,
+                    EffectCube, Pagination]}
                 autoplay={{
                     delay: autoplayDuration,
                     disableOnInteraction: false,
-                    pauseOnMouseEnter: { pauseOnHover }
                 }}
                 navigation={arrows}
                 pagination={{
@@ -50,6 +56,12 @@ const Carousel = ({ items, effect, autoplayDuration = 2000, dots = false, arrows
                             0
                         ]
                     }
+                }}
+                cubeEffect={{
+                    "shadow": true,
+                    "slideShadows": true,
+                    "shadowOffset": 20,
+                    "shadowScale": 0.94
                 }}
             >
                 {
