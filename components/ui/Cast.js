@@ -3,9 +3,9 @@ import { imageUrls } from "../../constants/global";
 
 const Cast = ({ cast }) => {
 
-    const stockImage = cast.gender > 1
-        ? imageUrls.STOCK.cast.man
-        : imageUrls.STOCK.cast.woman;
+    const stockImage = cast.gender === 0
+        ? imageUrls.STOCK.cast.unknown
+        : (cast.gender === 1 ? imageUrls.STOCK.cast.woman : imageUrls.STOCK.cast.man);
 
     let imagePath = cast.profile_path
         ? `${imageUrls.TMDB.medium}${cast.profile_path}`

@@ -7,7 +7,7 @@ import MovieList from "./ui/MoviesList";
 const NowShowing = ({ movieData }) => {
     const { results: preLoadedMovies, total_pages: totalPages } = movieData;
     const [currentPage, setCurrentPage] = useState(1);
-    const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/trending?page=${currentPage}`);
+    const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/now_playing?page=${currentPage}`);
     const movies = data ? data.results : preLoadedMovies;
 
     const pageChange = (page) => {

@@ -29,7 +29,8 @@ export const imageUrls = {
     STOCK: {
         cast : {
            man : '../../man.png',
-           woman : '../../woman.png'
+           woman : '../../woman.png',
+           unknown: '../../unknown.jpg'
         },
         backdrop: '../../image-not-found.jpg'
     }
