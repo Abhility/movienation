@@ -27,19 +27,20 @@ export const imageUrls = {
         full: 'https://image.tmdb.org/t/p/original'
     },
     STOCK: {
-        cast : {
-           man : '../../man.png',
-           woman : '../../woman.png',
-           unknown: '../../unknown.jpg'
+        cast: {
+            man: '../../man.png',
+            woman: '../../woman.png',
+            unknown: '../../unknown.jpg'
         },
-        backdrop: '../../image-not-found.jpg'
+        backdrop: '../../image-not-found.jpg',
+        nextJSLogo: '../../nextjs.svg'
     }
 }
 
 export const LINKS = {
-    MINE : {
+    MINE: {
         insta: 'https://www.instagram.com/abhility_',
-        github:'https://github.com/Abhility',
-        linkedIn:'https://www.linkedin.com/in/abhishek-07aa99131/'
+        github: 'https://github.com/Abhility',
+        linkedIn: 'https://www.linkedin.com/in/abhishek-07aa99131/'
     }
 }

@@ -1,11 +1,12 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
-    Box, Button, chakra, Container, HStack, Link, Stack,
+    Box, Button, chakra, Container, HStack, Image, Link, Stack,
     Text, useColorModeValue, VisuallyHidden, VStack
 } from '@chakra-ui/react';
 import { AiFillHeart } from 'react-icons/ai';
-import { FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa';
-import { LINKS } from '../../constants/global';
+import { FaInstagram, FaGithub, FaLinkedin, FaReact, FaNodeJs } from 'react-icons/fa';
+import { SiMongodb } from 'react-icons/si';
+import { imageUrls, LINKS } from '../../constants/global';
 import Logo from './Logo';
 
 const SocialButton = ({
@@ -52,8 +53,6 @@ const Footer = () => {
                     <Link href='https://developers.themoviedb.org/' isExternal>
                         <Button
                             rightIcon={<ExternalLinkIcon />}
-                            colorScheme='white'
-                            variant='outline'
                             size='xs'>
                             Movie DB
                         </Button>
@@ -72,7 +71,16 @@ const Footer = () => {
                     spacing={4}
                     justify={{ base: 'center', md: 'space-between' }}
                     align={{ base: 'center', md: 'center' }}>
-                    <Text>{`©${new Date().getFullYear()}  MovieNation. All rights reserved.`}</Text>
+                    <VStack>
+                        <Text>{`©${new Date().getFullYear()}  MovieNation. All rights reserved.`}</Text>
+                        <HStack gap={2}>
+                            <Text fontSize='xs'>Built with</Text>
+                            <Image src={imageUrls.STOCK.nextJSLogo} alt='Next JS logo' width='20px' height='20px' />
+                            <FaReact />
+                            <FaNodeJs />
+                            <SiMongodb />
+                        </HStack>
+                    </VStack>
                     <VStack>
                         <Text fontSize='md'>Developed with <AiFillHeart style={{ fill: '#C53030', display: 'inline' }} /> by Abhishek</Text>
                         <Stack direction={'row'} spacing={6}>

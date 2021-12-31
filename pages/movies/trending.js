@@ -1,15 +1,8 @@
-import { HStack, Image } from "@chakra-ui/react";
-import Carousel from '../../components/carousel/Carousel';
-import Movie from "../../components/ui/Movie";
+import Trending from "../../components/Trending";
 
 const TrendingMoviesPage = ({ movieData }) => {
-    const { results: movies } = movieData;
     return (
-        <HStack width='30%' mx='auto' mt={5}>
-            <Carousel
-                effect='cube'
-                items={movies.map(movie => <Movie movie={movie} />)} />
-        </HStack>
+        <Trending movieData={movieData} />
     );
 };
 
@@ -32,3 +25,12 @@ export default TrendingMoviesPage;
 // borderRadius='xl'
 // width='100%'
 // height='100%' />)}
+
+// const { results: movies } = movieData;
+// return (
+//     <HStack width='30%' mx='auto' mt={5}>
+//         <Carousel
+//             effect='cube'
+//             items={movies.map(movie => <Movie movie={movie} />)} />
+//     </HStack>
+// );

@@ -2,10 +2,9 @@ import { VStack } from "@chakra-ui/react";
 import useHttp from "../hooks/useHttp";
 import { useState } from "react";
 import MovieList from "./ui/MoviesList";
-import WelcomeLoader from "./loaders/WelcomeLoader";
 import Pagination from "./ui/Pagination";
 
-const Home = ({ movieData }) => {
+const Trending = ({ movieData }) => {
     const { results: preLoadedMovies, total_pages: totalPages } = movieData;
     const [currentPage, setCurrentPage] = useState(1);
     const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/trending?page=${currentPage}`);
@@ -17,7 +16,6 @@ const Home = ({ movieData }) => {
 
     return (
         <VStack my={10} mx={3} gap={5}>
-            <WelcomeLoader />
             <MovieList movies={movies} loading={loading} count={12} />
             <Pagination
                 noOfPages={totalPages}
@@ -28,4 +26,4 @@ const Home = ({ movieData }) => {
     );
 };
 
-export default Home;
+export default Trending;
