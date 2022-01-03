@@ -20,34 +20,34 @@ const links = [
     { name: 'Search', url: '/movies/search', icon: MdSearch },
 ];
 
-const NavLink = ({ children, url, py, width }) => {
+const NavLink = ({ children, url, py, width, onClick }) => {
     const { pathname } = useRouter();
     return (
-        <Box
-            px={2}
-            py={py}
-            width={width}
-            cursor='pointer'
-            fontSize={pathname === url ? 'xl' : 'md'}
-            fontWeight={pathname === url ? 'bold' : 'none'}
-            _hover={{
-                textDecoration: 'none',
-                borderRadius: 'md',
-                bg: useColorModeValue('blue.200', 'blue.700'),
-            }}>
-            <Link href={url}>
+        <Link href={url}>
+            <Box
+                px={2}
+                py={py}
+                width={width}
+                cursor='pointer'
+                fontSize={pathname === url ? 'xl' : 'md'}
+                fontWeight={pathname === url ? 'bold' : 'none'}
+                onClick={onClick}
+                _hover={{
+                    textDecoration: 'none',
+                    borderRadius: 'md',
+                    bg: useColorModeValue('blue.200', 'blue.700'),
+                }}>
                 {children}
-            </Link>
-        </Box>
+            </Box>
+        </Link>
     );
 };
 
 const NavLinks = (props) => {
-    const { onClick, ...otherProps } = props;
     return (
         links.map(link => (
-            <NavLink key={link.name} url={link.url} {...otherProps}>
-                <HStack onClick={onClick}>
+            <NavLink key={link.name} url={link.url} {...props}>
+                <HStack>
                     <Icon as={link.icon} />
                     <Text>{link.name}</Text>
                 </HStack>

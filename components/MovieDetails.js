@@ -24,17 +24,8 @@ const MovieDetails = ({ movie }) => {
     const movieId = movie.id;
     const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/getmovie/${movieId}/images`);
     const images = data;
-    const [showSliders, setShowSliders] = useState(false);
     const [isLargerThan1150] = useMediaQuery('(min-width: 1150px)');
     const [isLargerThan1265] = useMediaQuery('(min-width: 1265px)');
-
-    useEffect(() => {
-        let sliderTimer = setTimeout(() => setShowSliders(true), 3000);
-
-        return () => {
-            clearTimeout(sliderTimer);
-        }
-    }, []);
 
     const HomePageButton = () => {
         return (
@@ -97,7 +88,7 @@ const MovieDetails = ({ movie }) => {
                 width='100%'
                 height='40rem'
                 overflow='hidden'>
-                {showSliders && images?.backdrops.length > 0 ?
+                {!loading && images?.backdrops.length > 0 ?
                     <Carousel
                         items={images.backdrops.map(img => (
                             <Image src={`${imageUrls.TMDB.full}${img.file_path}`}
@@ -133,7 +124,7 @@ const MovieDetails = ({ movie }) => {
                 boxShadow='dark-lg'
                 borderRadius='lg'
                 overflow='hidden'>
-                {showSliders && images?.posters.length > 0 ?
+                {!loading && images?.posters.length > 0 ?
                     <Carousel
                     items={images.posters.map(img => (
                             <Image src={`${imageUrls.TMDB.medium}${img.file_path}`}
