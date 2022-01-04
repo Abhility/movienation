@@ -3,7 +3,7 @@ import {
     Menu, MenuButton, MenuList, MenuItem, MenuDivider,
     useColorModeValue, useColorMode, Center, HStack, Text,
     VStack, Drawer, DrawerOverlay, DrawerContent, DrawerHeader,
-    DrawerBody, useDisclosure, CloseButton, IconButton,
+    DrawerBody, useDisclosure, CloseButton, IconButton, Portal,
 } from '@chakra-ui/react';
 import { Icon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { MdHome, MdExplore, MdMovie, MdSearch, MdTrendingUp } from 'react-icons/md';
@@ -71,24 +71,23 @@ const MenuBar = () => {
                     src={'https://avatars.dicebear.com/api/male/username.svg'}
                 />
             </MenuButton>
-            <MenuList alignItems={'center'}>
-                <br />
-                <Center>
-                    <Avatar
-                        size={'2xl'}
-                        src={'https://avatars.dicebear.com/api/male/username.svg'}
-                    />
-                </Center>
-                <br />
-                <Center>
-                    <p>Username</p>
-                </Center>
-                <br />
-                <MenuDivider />
-                <MenuItem>Profile</MenuItem>
-                <MenuItem>Your WatchList</MenuItem>
-                <MenuItem>Logout</MenuItem>
-            </MenuList>
+            <Portal>
+                <MenuList alignItems={'center'} zI>
+                    <Center>
+                        <Avatar
+                            size={'2xl'}
+                            src={'https://avatars.dicebear.com/api/male/username.svg'}
+                        />
+                    </Center>
+                    <Center>
+                        <p>Username</p>
+                    </Center>
+                    <MenuDivider />
+                    <MenuItem>Profile</MenuItem>
+                    <MenuItem>Your WatchList</MenuItem>
+                    <MenuItem>Logout</MenuItem>
+                </MenuList>
+            </Portal>
         </Menu>
     );
 }
