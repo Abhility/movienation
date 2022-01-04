@@ -14,16 +14,18 @@ import { useEffect, useRef } from 'react';
 import Lottie from 'lottie-web';
 
 const Home = ({ movies }) => {
-    const welcomeLoader = useRef();
+
+    const heroAnimation = useRef();
     useEffect(() => {
         Lottie.loadAnimation({
-            container: welcomeLoader.current,
+            container: heroAnimation.current,
             renderer: 'svg',
             loop: true,
             autoplay: true,
             path: 'https://assets3.lottiefiles.com/private_files/lf30_bb9bkg1h.json'
         });
     }, []);
+
     return (
         <Stack
             direction={{ base: 'column', md: 'row' }}
@@ -90,7 +92,7 @@ const Home = ({ movies }) => {
             </Flex>
             <Flex flex={1}
                 align='center'>
-                <div className="welcome-loader" ref={welcomeLoader}></div>
+                <div className="welcome-loader" ref={heroAnimation} />
             </Flex>
         </Stack>
     );
