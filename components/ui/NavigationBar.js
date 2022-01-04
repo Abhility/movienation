@@ -136,7 +136,6 @@ const DesktopNavigation = () => {
         <Box
             bg={useColorModeValue('gray.100', 'gray.900')}
             px={4}
-            boxShadow='dark-lg'
             display={{ base: 'none', lg: 'block' }}
         >
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
@@ -162,7 +161,6 @@ const MobileNavigation = () => {
             bg={useColorModeValue('gray.100', 'gray.900')}
             px={4}
             py={3}
-            boxShadow='dark-lg'
             justifyContent='space-between'
             display={{ base: 'flex', lg: 'none' }}
         >

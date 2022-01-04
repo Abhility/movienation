@@ -5,7 +5,7 @@ const Logo = () => {
     return (
         <HStack align='center'>
             <Icon as={BiMoviePlay} />
-            <Text fontSize='xl'>MovieNation</Text>
+            <Text fontSize='xl'>Movienation</Text>
         </HStack>
     )
 };

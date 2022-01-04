@@ -1,23 +1,26 @@
-import { Box } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react";
 import Hero from "../components/ui/Hero";
 
-const HomePage = ({ movieData }) => {
+const HomePage = (props) => {
 
   return (
-    <Box minH='100vh' width='100%'>
-      <Hero movies={movieData.results.filter(movie => !!movie.poster_path)} />
-    </Box>
+    <VStack minH='100vh' width='100%' my={4} px={5} overflow='hidden' gap={5}>
+      <Hero movies={props.nowShowingMovies.filter(movie => !!movie.poster_path)} />
+    </VStack>
   );
 
 }
 
 export const getStaticProps = async () => {
-  const response = await fetch('http://localhost:5000/movie-info/getmovies/now_playing?page=1');
-  const data = await response.json();
+  let response = await fetch('http://localhost:5000/movie-info/getmovies/now_playing?page=1');
+  const nowShowing = await response.json();
+  response = await fetch('http://localhost:5000/movie-info/trending?page=1');
+  const trending = await response.json();
 
   return {
     props: {
-      movieData: data
+      nowShowingMovies: nowShowing.results,
+      trendingMovies: trending.results
     },
     revalidate: 80000
   }

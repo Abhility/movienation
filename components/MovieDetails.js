@@ -14,7 +14,6 @@ import WatchOption from "./WatchOption";
 import RelatedMovies from "./RelatedMovies";
 import MovieSocialLinks from "./MovieSocialLinks";
 import WatchListButton from "./WatchListButton";
-import { useEffect, useState } from "react";
 import { imageUrls } from '../constants/global'
 import useHttp from "../hooks/useHttp";
 import Carousel from "./carousel/Carousel";
