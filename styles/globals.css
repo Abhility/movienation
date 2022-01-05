@@ -39,6 +39,11 @@ a {
 .now-showing-animation{
    height: 400px;
 }
+
+.developer-animation{
+   height: 400px;
+}
+
 .welcome-loader-container {
   position: fixed;
   inset: 0;

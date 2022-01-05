@@ -34,6 +34,9 @@ export const imageUrls = {
         },
         backdrop: '../../image-not-found.jpg',
         nextJSLogo: '../../nextjs.svg'
+    },
+    OTHER: {
+        abhility: '../../abhility.jpg'
     }
 }
 
@@ -49,5 +52,6 @@ export const animations = {
     POPCORN: '../../animations/popcorn.json',
     MOVIE: '../../animations/movie.json',
     CAMERA: '../../animations/camera.json',
-    TICKET: '../../animations/ticket.json'
+    TICKET: '../../animations/ticket.json',
+    DEVELOPER: '../../animations/developer.json'
 }

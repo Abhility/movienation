@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, Icon, Text, Stack, Flex, useColorModeValue } from '@chakra-ui/react';
+import { SimpleGrid, Icon, Text, Stack, Flex, useColorModeValue, VStack } from '@chakra-ui/react';
 import { FcAssistant, FcDonate, FcInTransit } from 'react-icons/fc';
 
 const Feature = ({ title, text, icon }) => {
@@ -27,7 +27,7 @@ const Feature = ({ title, text, icon }) => {
 
 const FeatureSection = () => {
     return (
-        <Box p={4}>
+        <VStack p={4}>
             <Text fontSize='4xl' fontWeight={700} my={5}> Features of Movienation</Text>
             <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
                 <Feature
@@ -52,7 +52,7 @@ const FeatureSection = () => {
                     }
                 />
             </SimpleGrid>
-        </Box>
+        </VStack>
     );
 }
 
