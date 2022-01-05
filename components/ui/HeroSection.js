@@ -13,7 +13,7 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import Lottie from 'lottie-web';
 
-const Home = ({ movies }) => {
+const HeroSection = ({ movies }) => {
 
     const heroAnimation = useRef();
     useEffect(() => {
@@ -63,8 +63,7 @@ const Home = ({ movies }) => {
                         </Text>
                     </Heading>
                     <Text fontSize={{ base: 'md', lg: 'lg' }} color={'gray.500'}>
-                        The project board is an exclusive resource for contract work. It's
-                        perfect for freelancers, agencies, and moonlighters.
+                        Your one stop destination for movies. Explore, search , watchlist movies you are interested in. Everything at one place.
                     </Text>
                     <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
                         <Button
@@ -98,4 +97,4 @@ const Home = ({ movies }) => {
     );
 };
 
-export default Home;
+export default HeroSection;

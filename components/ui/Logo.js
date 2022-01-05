@@ -1,4 +1,4 @@
-import { HStack, Icon, Text } from "@chakra-ui/react";
+import { HStack, Icon, Text, useColorModeValue } from "@chakra-ui/react";
 import Lottie from "lottie-web";
 import { useEffect, useRef } from "react";
 
@@ -18,7 +18,7 @@ const Logo = () => {
     return (
         <HStack align='center'>
             <div className='logo' ref={logo} />
-            <Text fontSize='xl'>Movienation</Text>
+            <Text fontSize='2xl' fontWeight='bold'  color={useColorModeValue('blue.200', 'blue.700')} >Movienation</Text>
         </HStack>
     )
 };

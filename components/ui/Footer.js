@@ -6,7 +6,7 @@ import {
 import { AiFillHeart } from 'react-icons/ai';
 import { FaInstagram, FaGithub, FaLinkedin, FaReact, FaNodeJs } from 'react-icons/fa';
 import { SiMongodb } from 'react-icons/si';
-import { imageUrls, LINKS } from '../../constants/global';
+import { imageUrls, links } from '../../constants/global';
 import Logo from './Logo';
 
 const SocialButton = ({
@@ -84,13 +84,13 @@ const Footer = () => {
                     <VStack>
                         <Text fontSize='md'>Developed with <AiFillHeart style={{ fill: '#C53030', display: 'inline' }} /> by Abhishek</Text>
                         <Stack direction={'row'} spacing={6}>
-                            <SocialButton label='Github' href={LINKS.MINE.github}>
+                            <SocialButton label='Github' href={links.MINE.github}>
                                 <FaGithub />
                             </SocialButton>
-                            <SocialButton label='LinkedIn' href={LINKS.MINE.linkedIn}>
+                            <SocialButton label='LinkedIn' href={links.MINE.linkedIn}>
                                 <FaLinkedin />
                             </SocialButton>
-                            <SocialButton label='Instagram' href={LINKS.MINE.insta}>
+                            <SocialButton label='Instagram' href={links.MINE.insta}>
                                 <FaInstagram />
                             </SocialButton>
                         </Stack>

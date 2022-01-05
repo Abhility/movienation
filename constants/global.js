@@ -37,10 +37,17 @@ export const imageUrls = {
     }
 }
 
-export const LINKS = {
+export const links = {
     MINE: {
         insta: 'https://www.instagram.com/abhility_',
         github: 'https://github.com/Abhility',
         linkedIn: 'https://www.linkedin.com/in/abhishek-07aa99131/'
     }
+}
+
+export const animations = {
+    POPCORN: '../../animations/popcorn.json',
+    MOVIE: '../../animations/movie.json',
+    CAMERA: '../../animations/camera.json',
+    TICKET: '../../animations/ticket.json'
 }
