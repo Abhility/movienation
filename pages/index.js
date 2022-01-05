@@ -1,4 +1,5 @@
 import { VStack } from "@chakra-ui/react";
+import FeatureSection from "../components/ui/FeatureSection";
 import HeroSection from "../components/ui/HeroSection";
 import NowShowingSection from "../components/ui/NowShowingSection";
 
@@ -8,6 +9,7 @@ const HomePage = (props) => {
     <VStack minH='100vh' width='100%' my={4} px={5} overflow='hidden' gap={5}>
       <HeroSection />
       <NowShowingSection movies={props.nowShowingMovies.filter(movie => !!movie.poster_path)} />
+      <FeatureSection />
     </VStack>
   );
 
