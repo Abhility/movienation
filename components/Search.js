@@ -1,9 +1,11 @@
 import { VStack, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import useHttp from "../hooks/useHttp";
 import Pagination from "./ui/Pagination";
 import MovieList from "./ui/MoviesList";
+import { animations } from "../constants/global";
+import Lottie from "lottie-web";
 
 const Search = () => {
     const [query, setQuery] = useState('');
@@ -20,6 +22,17 @@ const Search = () => {
         setCurrentPage(page);
     }
 
+    const searchAnimation = useRef();
+    useEffect(() => {
+        Lottie.loadAnimation({
+            container: searchAnimation.current,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: animations.SEARCH
+        });
+    }, []);
+
     return (
         <VStack align='center' width='100%' minHeight='100vh' gap={5}>
             <Text fontSize={'xl'}>Search Here!</Text>
@@ -29,6 +42,12 @@ const Search = () => {
                 </InputLeftElement>
                 <Input type='text' placeholder='Search movie...' value={query} onChange={onChange} />
             </InputGroup>
+            {!data && 
+            <>
+            <Text fontSize='xl'>Start typing in above input box, your searches will appear here.</Text>
+            <div ref={searchAnimation}></div>
+            </>
+            }
             <MovieList movies={searchedMovies} count={12} loading={loading} />
             {data && <Pagination noOfPages={totalPages} currentPage={currentPage} pageChange={pageChange} />}
         </VStack>

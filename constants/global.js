@@ -53,5 +53,6 @@ export const animations = {
     MOVIE: '../../animations/movie.json',
     CAMERA: '../../animations/camera.json',
     TICKET: '../../animations/ticket.json',
-    DEVELOPER: '../../animations/developer.json'
+    DEVELOPER: '../../animations/developer.json',
+    SEARCH: '../../animations/search.json',
 }
