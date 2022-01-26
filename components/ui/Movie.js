@@ -17,13 +17,13 @@ const Movie = ({ movie }) => {
             </Link>
         );
     };
-
+    const cardBackground = useColorModeValue('gray.100', 'gray.900');
     return (
         movie &&
         <VStack
             borderRadius='lg'
             width='sm'
-            bg={useColorModeValue('gray.100', 'gray.900')}
+            bg={cardBackground}
             min-height='xl'
             overflow='hidden'
             boxShadow='dark-lg'

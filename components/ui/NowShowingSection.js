@@ -4,7 +4,6 @@ import Carousel from "../carousel/Carousel";
 
 const NowShowingSection = ({ movies }) => {
 
-
     return (
         <VStack
             width='100%'
@@ -15,6 +14,7 @@ const NowShowingSection = ({ movies }) => {
                     effect='fade'
                     arrows={true}
                     items={movies.map(movie => <Image
+                        key={movie.id}
                         alt={movie.name}
                         fit='fill'
                         rounded={'xl'}

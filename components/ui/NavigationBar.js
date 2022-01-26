@@ -23,7 +23,7 @@ const links = [
 const NavLink = ({ children, url, py, width, onClick }) => {
     const { pathname } = useRouter();
     return (
-        <Link href={url}>
+        <Link href={url} passHref>
             <Box
                 px={2}
                 py={py}

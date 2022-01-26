@@ -75,7 +75,7 @@ const HeroSection = ({ movies }) => {
                             }}>
                             Create Watchlist
                         </Button>
-                        <Link href='/movies/explore'>
+                        <Link href='/movies/explore' passHref>
                             <Button
                                 rounded='full'
                                 variant='outline'

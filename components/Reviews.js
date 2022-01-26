@@ -16,7 +16,7 @@ const Reviews = ({ movieId }) => {
             <Divider />
             {loading ? <h1>loading</h1> :
                 <Carousel
-                    items={movieReviews.map(review => <Review review={review} />)}
+                    items={movieReviews.map(review => <Review key={review.id} review={review} />)}
                     dots={true}
                     pauseOnHover={true}
                     effect='creative'

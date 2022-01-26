@@ -22,7 +22,7 @@ const CastList = ({ movieId }) => {
                     justifyContent='center'
                     alignItems='center'>
                     <Carousel
-                        items={castData.map(cast => <Cast cast={cast}/>)}
+                        items={castData.map(cast => <Cast key={cast.id} cast={cast}/>)}
                         effect='coverflow'
                         arrows={true}
                         autoplayDuration={3000}

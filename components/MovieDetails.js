@@ -90,7 +90,9 @@ const MovieDetails = ({ movie }) => {
                 {!loading && images?.backdrops.length > 0 ?
                     <Carousel
                         items={images.backdrops.map(img => (
-                            <Image src={`${imageUrls.TMDB.full}${img.file_path}`}
+                            <Image 
+                                key={img.file_path}
+                                src={`${imageUrls.TMDB.full}${img.file_path}`}
                                 alt={movie.title}
                                 fallbackSrc={imageUrls.STOCK.backdrop}
                                 width='100%'
@@ -126,7 +128,9 @@ const MovieDetails = ({ movie }) => {
                 {!loading && images?.posters.length > 0 ?
                     <Carousel
                     items={images.posters.map(img => (
-                            <Image src={`${imageUrls.TMDB.medium}${img.file_path}`}
+                            <Image 
+                                key={img.file_path}
+                                src={`${imageUrls.TMDB.medium}${img.file_path}`}
                                 alt={movie.title}
                                 fallbackSrc={imageUrls.STOCK.backdrop}
                                 width='100%'
