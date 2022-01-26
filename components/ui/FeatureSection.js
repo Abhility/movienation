@@ -1,5 +1,6 @@
 import { SimpleGrid, Icon, Text, Stack, Flex, useColorModeValue, VStack } from '@chakra-ui/react';
-import { FcAssistant, FcDonate, FcInTransit } from 'react-icons/fc';
+import { BsBookmarkPlusFill } from 'react-icons/bs';
+import { MdOndemandVideo, MdOutlineTravelExplore } from 'react-icons/md';
 
 const Feature = ({ title, text, icon }) => {
     return (
@@ -15,7 +16,7 @@ const Feature = ({ title, text, icon }) => {
                 justify={'center'}
                 color={'white'}
                 rounded={'full'}
-                bg={'gray.100'}
+                bg={useColorModeValue('blue.200', 'blue.700')}
                 mb={1}>
                 {icon}
             </Flex>
@@ -31,24 +32,24 @@ const FeatureSection = () => {
             <Text fontSize='4xl' fontWeight={700} my={5}> Features of Movienation</Text>
             <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
                 <Feature
-                    icon={<Icon as={FcAssistant} w={10} h={10} />}
-                    title={'Lifetime Support'}
+                    icon={<Icon as={MdOutlineTravelExplore} w={10} h={10} />}
+                    title={'Explore'}
                     text={
-                        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
+                        'Explore, search and find details of movies and make your decision on watch to watch. '
                     }
                 />
                 <Feature
-                    icon={<Icon as={FcDonate} w={10} h={10} />}
-                    title={'Unlimited Donations'}
+                    icon={<Icon as={BsBookmarkPlusFill} w={10} h={10} />}
+                    title={'Create Watchlist'}
                     text={
-                        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
+                        'Create watchlist of the movies that you never want to miss.'
                     }
                 />
                 <Feature
-                    icon={<Icon as={FcInTransit} w={10} h={10} />}
-                    title={'Instant Delivery'}
+                    icon={<Icon as={MdOndemandVideo} w={10} h={10} />}
+                    title={'Watch Videos'}
                     text={
-                        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
+                        'Watch trailers, teasers, featured content etc. for movies at a one platform.'
                     }
                 />
             </SimpleGrid>

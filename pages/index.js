@@ -18,9 +18,9 @@ const HomePage = (props) => {
 }
 
 export const getStaticProps = async () => {
-  let response = await fetch('http://localhost:5000/movie-info/getmovies/now_playing?page=1');
+  let response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/getmovies/now_playing?page=1`);
   const nowShowing = await response.json();
-  response = await fetch('http://localhost:5000/movie-info/trending?page=1');
+  response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/trending?page=1`);
   const trending = await response.json();
 
   return {

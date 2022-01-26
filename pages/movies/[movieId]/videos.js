@@ -9,7 +9,7 @@ import useHttp from "../../../hooks/useHttp";
 const MovieVideosPage = () => {
     const router = useRouter();
     const { movieId } = router.query;
-    const {data,loading, hasError } = useHttp(`http://localhost:5000/movie-info/getmovie/${movieId}/videos`);
+    const {data,loading, hasError } = useHttp(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/getmovie/${movieId}/videos`);
     const videos = data?.results;
 
     return (

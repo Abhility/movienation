@@ -4,7 +4,7 @@ import useHttp from "../hooks/useHttp";
 import MoviesList from './ui/MoviesList';
 
 const RelatedMovies = ({ movieId }) => {
-    const { data, loading, hasError } = useHttp(`http://localhost:5000/movie-info/movie/${movieId}/related`);
+    const { data, loading, hasError } = useHttp(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/movie/${movieId}/related`);
     let relatedMovies = data?.results;
     const randomIndex = Math.round(Math.random() * (relatedMovies?.length));
     relatedMovies = relatedMovies?.slice(randomIndex, randomIndex + 3);
