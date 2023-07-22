@@ -7,7 +7,7 @@ const TrendingMoviesPage = ({ movieData }) => {
 };
 
 export const getStaticProps = async () => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/trending?page=1`);
+    const response = await fetch(`https://moviefy.glitch.me/movie-info/trending?page=1`);
     const data = await response.json();
 
     return {

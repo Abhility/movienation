@@ -7,7 +7,7 @@ import Pagination from "./ui/Pagination";
 const Trending = ({ movieData }) => {
     const { results: preLoadedMovies, total_pages: totalPages } = movieData;
     const [currentPage, setCurrentPage] = useState(1);
-    const { data, loading, hasError } = useHttp(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/trending?page=${currentPage}`);
+    const { data, loading, hasError } = useHttp(`https://moviefy.glitch.me/movie-info/trending?page=${currentPage}`);
     const movies = data ? data.results : preLoadedMovies;
 
     const pageChange = (page) => {
