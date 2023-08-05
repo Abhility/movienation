@@ -21,7 +21,7 @@ import Reviews from "./Reviews";
 
 const MovieDetails = ({ movie }) => {
     const movieId = movie.id;
-    const { data, loading, hasError } = useHttp(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/getmovie/${movieId}/images`);
+    const { data, loading, hasError } = useHttp(`https://moviefy.glitch.me/movie-info/getmovie/${movieId}/images`);
     const images = data;
     const [isLargerThan1150] = useMediaQuery('(min-width: 1150px)');
     const [isLargerThan1265] = useMediaQuery('(min-width: 1265px)');

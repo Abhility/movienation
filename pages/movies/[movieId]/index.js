@@ -10,7 +10,7 @@ export const getServerSideProps = async (context) => {
     const { movieId } = context.params;
 
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/getmovie/${movieId}`);
+        const response = await fetch(`https://moviefy.glitch.me/movie-info/getmovie/${movieId}`);
         const movieData = await response.json();
         if (movieData.success === false) {
             throw new Error(movieData.status_message);
