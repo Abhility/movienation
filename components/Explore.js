@@ -10,7 +10,7 @@ import MovieList from "./ui/MoviesList";
 const Explore = () => {
     const [selectedGenre, setSelectedGenre] = useState('Action');
     const [currentPage, setCurrentPage] = useState(1);
-    const { data, loading, hasError } = useHttp(`https://moviefy.glitch.me/movie-info/genre/${selectedGenre}?page=${currentPage}`);
+    const { data, loading, hasError } = useHttp(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/genre/${selectedGenre}?page=${currentPage}`);
     const totalPages = data?.total_pages;
     let moviesByGenres = data?.results;
 

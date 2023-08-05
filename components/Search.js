@@ -10,7 +10,7 @@ import Lottie from "lottie-web";
 const Search = () => {
     const [query, setQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const { data, loading, hasError } = useHttp(`https://moviefy.glitch.me/movie-info/search/${query}?page=${currentPage}`);
+    const { data, loading, hasError } = useHttp(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/search/${query}?page=${currentPage}`);
     const searchedMovies = data?.results;
     const totalPages = data?.total_pages;
 

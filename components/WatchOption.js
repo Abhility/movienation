@@ -9,7 +9,7 @@ import useHttp from "../hooks/useHttp";
 import React from 'react';
 
 const WatchOption = ({ movieId }) => {
-    const { data, loading, hasError } = useHttp(`https://moviefy.glitch.me/movie-info/movie/${movieId}/watch`);
+    const { data, loading, hasError } = useHttp(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/movie/${movieId}/watch`);
     let watchOptions = data?.IN;
 
     const rentOptions = watchOptions?.rent;
