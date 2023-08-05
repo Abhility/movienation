@@ -8,7 +8,7 @@ import Circle from "./loaders/skeletons/Circle";
 
 
 const MovieSocialLinks = ({ movieId }) => {
-    const { data, loading, hasError } = useHttp(`https://moviefy.glitch.me/movie-info/movie/${movieId}/socialLinks`);
+    const { data, loading, hasError } = useHttp(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/movie/${movieId}/socialLinks`);
     const socialLinks = data;
 
     const getDataForSocialLink = (socialLink) => {

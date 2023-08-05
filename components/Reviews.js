@@ -6,7 +6,7 @@ import Review from "./ui/Review";
 
 const Reviews = ({ movieId }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const { data, loading, hasError } = useHttp(`https://moviefy.glitch.me/movie-info/movie/${movieId}/reviews?page=${currentPage}`);
+    const { data, loading, hasError } = useHttp(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/movie/${movieId}/reviews?page=${currentPage}`);
     const movieReviews = data?.results;
 
     return (

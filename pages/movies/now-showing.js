@@ -8,7 +8,7 @@ const NowShowingMoviesPage = ({ movieData }) => {
 };
 
 export const getStaticProps = async () => {
-    const response = await fetch(`https://moviefy.glitch.me/movie-info/getmovies/now_playing?page=1`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/movie-info/getmovies/now_playing?page=1`);
     const data = await response.json();
   
     return {
