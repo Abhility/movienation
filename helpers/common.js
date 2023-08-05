@@ -25,5 +25,9 @@ export const SocialLinks = {
     IMDB: {
         name: 'imdb',
         link: 'https://www.imdb.com/title'
+    },
+    WIKI_DATA: {
+        name: 'wikidata',
+        link: 'https://www.wikidata.org/wiki'
     }
 }

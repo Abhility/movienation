@@ -85,7 +85,7 @@ const MovieDetails = ({ movie }) => {
                 display='flex'
                 alignItems='center'
                 width='100%'
-                height='40rem'
+                height='45rem'
                 overflow='hidden'>
                 {!loading && images?.backdrops.length > 0 ?
                     <Carousel

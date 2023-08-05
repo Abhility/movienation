@@ -1,5 +1,4 @@
 import { HStack, Skeleton, VStack } from "@chakra-ui/react";
-import Circle from "./Circle";
 
 const CastSkeleton = ({ count }) => {
     return (
@@ -9,10 +8,11 @@ const CastSkeleton = ({ count }) => {
                     .fill(0)
                     .map((_, i) =>
                         <VStack key={i}>
-                            <Circle size='110' />
-                            <Skeleton width='80px' height='15px' />
-                            <Skeleton width='80px' height='10px' />
-                        </VStack>)
+                            <Skeleton width='300px' height='380px' />
+                            <Skeleton width='300px' height='15px' />
+                            <Skeleton width='300px' height='15px' />
+                        </VStack>
+                    )
             }
         </HStack>
     );

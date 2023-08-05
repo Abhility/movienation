@@ -9,7 +9,7 @@ const NowShowingSection = ({ movies }) => {
             width='100%'
             mt='4rem !important'>
             <Text fontSize='4xl' fontWeight='800' fontStyle='italic'>Now showing in theatres!</Text>
-            <Box height='800px' width='100%'>
+            <Box height='1280px' width='90%'>
                 <Carousel
                     effect='fade'
                     arrows={true}

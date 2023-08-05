@@ -35,7 +35,7 @@ const CastList = ({ movieId }) => {
         <VStack width='100%' height='500px' mx={5} alignItems='center' gap={5}>
             <Text fontSize='4xl'>Cast</Text>
             <Divider />
-            {loading ? <CastSkeleton count={20} /> : <CastListContainer />}
+            {loading ? <CastSkeleton count={4} /> : <CastListContainer />}
         </VStack>
     );
 };

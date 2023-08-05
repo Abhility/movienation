@@ -2,6 +2,7 @@ import { HStack, Link, Tooltip } from "@chakra-ui/react";
 import React from "react";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaFacebook, FaTwitter, FaImdb } from "react-icons/fa";
+import { SiWikidata } from "react-icons/si";
 import { SocialLinks } from "../helpers/common";
 import useHttp from "../hooks/useHttp";
 import Circle from "./loaders/skeletons/Circle";
@@ -34,6 +35,11 @@ const MovieSocialLinks = ({ movieId }) => {
                 return {
                     icon: <FaImdb size={25} style={{ fill: "#DBA506" }} />,
                     link: `${SocialLinks.IMDB.link}/${linkId}`
+                }
+            case SocialLinks.WIKI_DATA.name:
+                return {
+                    icon: <SiWikidata size={25} style={{ fill: "#f2f2f2" }} />,
+                    link: `${SocialLinks.WIKI_DATA.link}/${linkId}`
                 }
         }
 
